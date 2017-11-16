@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'devise/sessions#new'
+  root to: 'kiosk#show'
+
+  resource :kiosk
 end
