@@ -1,63 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>UCL TV Kiosk</title>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" type="text/css" href="dashboard.css" />
-  </head>
-  <body>
-    <div id="div-header">
-      <div id="div-time-weather-date">
-        <div id="div-time">
-          11:57
-        </div>
-        <div id="div-weather">
-          13 Celsius ⛅️
-        </div>
-        <div id="div-date">
-          14th Nov 2017
-        </div>
-        <img id="img-faculty-logo" src="UCL-Engineering-logo_basic_trans.png" alt="UCL Engineering Logo"/>
-      </div>
-
-      <img id="img-UCL-logo" src="ucl-home.png" alt="UCL Logo"  />
-
+<div id="div-header">
+  <div id="div-time-weather-date">
+    <div id="div-time">
+      <%= Time.now.strftime("%I:%Mc") %>
     </div>
-
-    <div id="div-tab">
-      <img src="news.png"  />
-      News
+    <div id="div-weather">
+      13 Celsius ⛅️
     </div>
-
-    <div id="div-center">
-      <div class="content-canvas">
-        Content goes here.
-      </div>
+    <div id="div-date">
+      <%= Date.today %>
     </div>
+    <%= image_tag("ucl_engineering_logo.png") %>
+  </div>
 
-    <div id="div-footer">
-      <div id="div-tfl-widget" class="footer-widget">PROBLEMS ON VICTORIA LINE</div>
-      <div class="vertical-divider"></div>
-      <div id="div-news-feed" class="footer-widget">NOTHING NEW HAPPENED</div>
-    </div>
+  <%= image_tag("ucl_logo.png") %>
 
+</div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  </body>
-</html>
+<div id="div-tab">
+  <%= image_tag("news.png") %>
+  News
+</div>
+
+<div id="div-center">
+  <div class="content-canvas">
+    Content goes here.
+  </div>
+</div>
+
+<div id="div-footer">
+  <div id="div-tfl-widget" class="footer-widget">PROBLEMS ON VICTORIA LINE</div>
+  <div class="vertical-divider"></div>
+  <div id="div-news-feed" class="footer-widget">NOTHING NEW HAPPENED</div>
+</div>
