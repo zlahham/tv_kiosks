@@ -1,3 +1,151 @@
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ //Variable definitions
+ $white: #fff;
+ $background-color: #0ff;
+ $divider-color: #888;
+ $content-canvas-background-color: rgba(255,255,255,0.5);
+
+ $header-height: 16%;
+ $footer-height: 8%;
+ $div-center-height: 100% - ($header-height + $footer-height);
+ $content-canvas-width: 66%;
+
+ $divider-thickness: 0.1%;
+
+ .fixed-bar {
+   background-color: $white;
+   margin: 0;
+ }
+
+ body,
+ html {
+   height: 100%;
+   overflow: hidden;
+ }
+
+ #ucl-engineering-logo {
+   position: fixed;
+   left: 50% - 10%;
+   top: 2.5%;
+   max-width: 20%;
+ }
+
+ #ucl-logo {
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   max-width: 20%;
+   opacity: 0.5;
+ }
+
+ #div-header {
+   @extend .fixed-bar;
+   position: relative;
+   height: $header-height;
+ }
+
+ #div-time-weather-date {
+   position: absolute;
+   display:flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+   top: $header-height;
+   left: 2.5%;
+
+ }
+
+ #div-time {
+   font-size: 4em;
+   font-weight: 800;
+ }
+
+ #div-weather {
+   font-size: 2em;
+   font-weight: 800;
+ }
+
+ #div-date {
+   position: fixed;
+   left: 20%;
+   font-size: 2em;
+ }
+
+ #div-tab {
+   position: fixed;
+   top: 30%;
+   background-color: $content-canvas-background-color;
+   font-size: 1.8em;
+   padding: 0.5%;
+   padding-left: 2%;
+   height: 3em;
+
+
+   img {
+     max-height: 100%;
+     max-width: 100%;
+   }
+ }
+
+ #div-footer {
+   @extend .fixed-bar;
+   display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+   height: $footer-height;
+   border-top: 1px;
+   border-color: $divider-color;
+   border-top-style: solid;
+ }
+
+ #div-tfl-widget {
+   font-size: 1.25em;
+ }
+
+ #div-news-feed {
+   font-size: 1.25em;
+ }
+
+ #div-center {
+   background-color: $white;
+   background-image: url(asset-path('background.png'));
+   height: auto !important; //Cause footer to stick to bottom in IE 6 */
+   min-height: $div-center-height;
+   display:flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+
+ }
+
+ .content-canvas {
+   background-color: $content-canvas-background-color;
+   width: $content-canvas-width;
+   flex-grow: 0.7;
+   padding: 5%;
+ }
+
+ .footer-widget {
+   width: (100% - $divider-thickness) / 2;
+   text-align: center;
+ }
+
+ .vertical-divider {
+   background-color: $divider-color;
+   height: ($footer-height - $divider-thickness);
+   left: (100% - $divider-thickness) / 2;
+   position: absolute;
+   width: $divider-thickness;
+ }
+
+//Visually removes weird p tags
+//TODO Better solution?
+.notice, .alert {
+ margin: 0;
+ border: 0;
+ padding: 0;
+}
