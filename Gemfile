@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'bootstrap-sass'
+gem 'devise'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'pg', '~> 0.18'
@@ -9,7 +10,6 @@ gem 'rails', '~> 5.1.4'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'devise'
 # gem "cancancan"
 # gem 'rails_admin', '~> 1.2'
 
@@ -23,6 +23,7 @@ end
 
 group :development, :test do
   # gem 'faker'
+  gem 'awesome_print'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'pry-rescue'
