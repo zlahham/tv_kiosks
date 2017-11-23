@@ -1,13 +1,13 @@
 <div id="div-header">
   <div id="div-time-weather-date">
     <div id="div-time">
-      <%= Time.now.strftime("%I:%M") %>
+      <%= Time.now.strftime("%I:%M %p") %>
     </div>
     <div id="div-weather">
       13 Celsius ⛅️
     </div>
     <div id="div-date">
-      <%= Date.today %>
+      <%= Date.today.strftime("%d/%m/%Y") %>
     </div>
     <%= image_tag("ucl_engineering_logo.png", id: "ucl-engineering-logo") %>
   </div>
@@ -16,14 +16,33 @@
 
 </div>
 
+<% post = Post.first %>
 <div id="div-tab">
-  <%= image_tag("news.png", id: "news") %>
-  News
+  <% if post.category == "news" %>
+    <%= image_tag("news.png", id: "tab-icon") %>
+    News
+  <% elsif post.category == "event" %>
+    <%= image_tag("event.png", id: "tab-icon") %>
+    Event
+  <% end %>
 </div>
 
 <div id="div-center">
   <div class="content-canvas">
-    <%= Post.first.title %>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= post.content %>
+      </div>
+      <div class="col-sm-6">
+        <%= post.title %>
+      </div>
+    </div>
+    <div class="row">
+      <!-- TODO fix offset -->
+      <div class="offset-sm-3 col-sm-6 offset-sm-3">
+        <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
+      </div>
+    </div>
   </div>
 </div>
 
