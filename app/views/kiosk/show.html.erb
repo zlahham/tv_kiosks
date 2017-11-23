@@ -16,14 +16,19 @@
 
 </div>
 
+<% post = Post.first %>
 <div id="div-tab">
-  <%= image_tag("news.png", id: "news") %>
-  News
+  <% if post.category == "news" %>
+    <%= image_tag("news.png", id: "tab-icon") %>
+    News
+  <% elsif post.category == "event" %>
+    <%= image_tag("event.png", id: "tab-icon") %>
+    Event
+  <% end %>
 </div>
 
 <div id="div-center">
   <div class="content-canvas">
-    <% post = Post.first %>
     <div class="row">
       <div class="col-sm-6">
         <%= post.content %>
