@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'bootstrap-sass'
+gem 'cancancan', '~> 2.0'
 gem 'devise'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
@@ -11,8 +12,6 @@ gem 'rails_admin', '~> 1.2'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-# gem "cancancan"
-# gem 'rails_admin', '~> 1.2'
 
 group :development do
   gem 'better_errors'
