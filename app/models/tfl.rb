@@ -16,9 +16,9 @@ class TFL
   end
 
   def self.disruptions
-    list = ''
-    @disruptions.each do |disruption|
-      list += disruption[1] + "\n"
+    list = []
+    @disruptions.each_with_index do |disruption, index|
+      list[index] = disruption[1]
     end
     return list
   end
