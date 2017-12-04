@@ -46,9 +46,10 @@
 
 <div id="div-footer">
   <div id="div-tfl-widget" class="footer-widget">
-    <% if TFL.disruptions[0].blank? %>
+    <% if TFL.no_disruptions %>
      <%= "Good service on all lines." %>
     <% else %>
+    <!-- TODO cycle through disruptions -->
       <%= TFL.disruptions[0] %>
     <% end %>
   </div>
