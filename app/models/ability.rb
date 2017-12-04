@@ -3,9 +3,15 @@ class Ability
 
   def initialize(user)
     return unless user.present?
-    can :index, KioskController
-    can :manage, :all if user.admin?
-    # can :update, RegistrationsController, user: user
+    can :access, :rails_admin
+
+    if user.admin?
+      can :manage, :all
+    elsif user.staff?
+      can :dashboard, :all
+      can :manage, User, id: user.id
+      can :manage, Post, user_id: user.id
+    end
   end
 
   # Define abilities for the passed in user here. For example:
