@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   resource :kiosk
 
   root to: 'kiosk#show'
+
+  KioskController::DEPTS.each do |d|
+    get "/#{d}", to: "kiosk\##{d}"
+  end
 end
