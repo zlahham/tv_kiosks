@@ -1,7 +1,7 @@
 $( document ).ready(function() {
   console.log( "ready!" );
   $.fn.ticker.defaults = {
-    random:        true, // Whether to display ticker items in a random order
+    random:        false, // Whether to display ticker items in a random order
     itemSpeed:     3000,  // The pause on each ticker item before being replaced
     cursorSpeed:   40,    // Speed at which the characters are typed
     pauseOnHover:  false,  // Whether to pause when the mouse hovers over the ticker
