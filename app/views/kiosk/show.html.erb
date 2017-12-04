@@ -14,7 +14,7 @@
 
 </div>
 
-<% post = Post.second %>
+<% post = Post.last %>
 <div id="div-tab">
   <% if post.category == "news" %>
     <%= image_tag("news.png", id: "tab-icon") %>
@@ -46,7 +46,11 @@
 
 <div id="div-footer">
   <div id="div-tfl-widget" class="footer-widget">
-    <%= TFL.disruptions[0] %>
+    <% if TFL.disruptions[0].blank? %>
+     <%= "Good service on all lines." %>
+    <% else %>
+      <%= TFL.disruptions[0] %>
+    <% end %>
   </div>
   <div class="vertical-divider"></div>
   <div id="div-news-feed" class="footer-widget">NOTHING NEW HAPPENED</div>
