@@ -5,8 +5,14 @@ RailsAdmin.config do |config|
   end
   config.current_user_method(&:current_user)
 
-  ## == Cancan ==
-  # config.authorize_with :cancan
+  ## == Cancancan ==
+  config.authorize_with :cancan
+  # config.authorize_with :cancancan
+
+  # config.model Post do
+  #   field :title
+  #   field :content, :text, :ckeditor
+  # end
 
   config.actions do
     dashboard                     # mandatory
