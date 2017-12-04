@@ -3,7 +3,7 @@
     <div id="div-time">
     </div>
     <div id="div-weather">
-      13 Celsius ⛅️
+      4° Celsius ⛅️
     </div>
     <div id="div-date">
     </div>
@@ -14,7 +14,7 @@
 
 </div>
 
-<% post = Post.first %>
+<% post = Post.last %>
 <div id="div-tab">
   <% if post.category == "news" %>
     <%= image_tag("news.png", id: "tab-icon") %>
@@ -29,10 +29,10 @@
   <div class="content-canvas">
     <div class="row">
       <div class="col-sm-6">
-        <%= post.content %>
+        <%= post.title %>
       </div>
       <div class="col-sm-6">
-        <%= post.title %>
+        <%= post.content %>
       </div>
     </div>
     <div class="row">
@@ -45,7 +45,14 @@
 </div>
 
 <div id="div-footer">
-  <div id="div-tfl-widget" class="footer-widget">PROBLEMS ON VICTORIA LINE</div>
+  <div id="div-tfl-widget" class="footer-widget">
+    <% if TFL.no_disruptions %>
+     <%= "Good service on all lines." %>
+    <% else %>
+    <!-- TODO cycle through disruptions -->
+      <%= TFL.disruptions[0] %>
+    <% end %>
+  </div>
   <div class="vertical-divider"></div>
   <div id="div-news-feed" class="footer-widget">NOTHING NEW HAPPENED</div>
 </div>
