@@ -54,5 +54,13 @@
     <% end %>
   </div>
   <div class="vertical-divider"></div>
-  <div id="div-news-feed" class="footer-widget">NOTHING NEW HAPPENED</div>
+  <div id="div-news-feed" class="footer-widget">
+	<div class="ticker">
+      <ul>
+		  <% News.newslist.each do |item| %>
+			  <li> <%= item %> </li>
+	  <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
