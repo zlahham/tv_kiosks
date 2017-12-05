@@ -16,8 +16,9 @@ $( document ).ready(function() {
 	gap: 50
   });
 
-  // jQuery ticker; currently not in use
-  $.fn.ticker.defaults = {
+  // jQuery ticker; currently not in use. Uncomment this and the code
+  // in show.html.erb to activate
+  /*$.fn.ticker.defaults = {
     random:        false, // Whether to display ticker items in a random order
     itemSpeed:     3000,  // The pause on each ticker item before being replaced
     cursorSpeed:   40,    // Speed at which the characters are typed
@@ -29,6 +30,6 @@ $( document ).ready(function() {
     fadeInSpeed:   800,   // Speed of the fade-in animation
     fadeOutSpeed:  800    // Speed of the fade-out animation
   };
-  $('.ticker').ticker();
+  $('.ticker').ticker();*/
 
 });

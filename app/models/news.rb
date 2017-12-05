@@ -29,20 +29,32 @@ class News
 	  title_field = "title"
 	  #issue: the 'description' fields in the feed finish mid-sentence,
 	  #with an ellipsis and a "continue reading";
-	  #the 'content' fields are far too long
+	  #whereas the 'content' fields are far too long for a ticker
 	  content_field = "content"
 	end
 
     #insert mdash between news item title and news item content
-    delimiter = "\u2014"
+    title_delimiter = "\u2014"
 
 	news_list = Array.new
 	articles.each do |article|
 	  title = strip_tags(article["#{title_field}"])
 	  content = strip_tags(article["#{content_field}"])
-      news_list << "#{title}#{delimiter}#{content}"
+      news_list << "#{title}#{title_delimiter}#{content}"
     end
 
     return news_list
+  end
+
+  def self.news_string(news_feed)
+    #insert whitespace between news items
+	#change this to whitespace
+	item_delimiter = "\u2014" * 10
+
+	news_string = ""
+    self.news_list(news_feed).each do |item|
+	  news_string += "#{item}#{item_delimiter}"
+	end
+	return news_string
   end
 end
