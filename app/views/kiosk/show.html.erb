@@ -17,32 +17,56 @@
 <% post = Post.last %>
 <div id="div-tab">
   <% if post.category == "news" %>
-    <h1><span class="badge badge-light">News  <%= fa_icon("rss") %></span></h1>
+    <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
+      <div class="card-body">
+    <%= fa_icon("rss", text: 'News') %>
+      </div>
+    </div>
 
   <% elsif post.category == "event" %>
-    <h1><span class="badge badge-light">Event  <%= fa_icon("calendar") %></span></h1>
+    <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
+      <div class="card-body">
+    <%= fa_icon("calendar", text: 'Event') %>
+      </div>
+    </div>
   <% end %>
 </div>
 
 <div id="div-center">
-  <div class="content-canvas">
-    <div class="row">
-      <div class="col-sm-6">
-        <%= post.title %>
-      </div>
-      <div class="col-sm-6">
-        <%= post.content.html_safe %>
-      </div>
+
+  <!-- <div class="content&#45;canvas"> -->
+  <div class="card border-info mb-3">
+    <div class="card-header text-center">
+      <%= post.title %>
     </div>
-    <div class="row">
-      <!-- TODO fix offset -->
-      <div class="offset-sm-3 col-sm-6 offset-sm-3">
-        <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
-      </div>
+    <div class="card-body">
+      <h4 class="card-title">Special title treatment</h4>
+      <p class="card-text">
+      <%= post.content.html_safe %>
+      </p>
+      <!-- <a href="#" class="btn btn&#45;primary">Go somewhere</a> -->
     </div>
+    <div class="card-footer text-muted">
+      <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
+    </div>
+    <!-- </div> -->
+
+    <!-- <div class="row"> -->
+    <!--   <div class="col&#45;sm&#45;6"> -->
+    <!--   </div> -->
+    <!--   <div class="col&#45;sm&#45;6"> -->
+    <!--   </div> -->
+    <!-- </div> -->
+    <!-- <div class="row"> -->
+    <!--   <!&#45;&#45; TODO fix offset &#45;&#45;> -->
+    <!--   <div class="offset&#45;sm&#45;3 col&#45;sm&#45;6 offset&#45;sm&#45;3"> -->
+    <!--   </div> -->
+    <!-- </div> -->
+
   </div>
 </div>
 
+<!-- <div class="fixed&#45;bottom"> -->
 <div id="div-footer">
   <div id="div-tfl-widget" class="footer-widget">
     <% if TFL.no_disruptions %>
