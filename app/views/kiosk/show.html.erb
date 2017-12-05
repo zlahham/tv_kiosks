@@ -55,12 +55,12 @@
   </div>
   <div class="vertical-divider"></div>
   <div id="div-news-feed" class="footer-widget">
-	<div class="ticker">
-      <ul>
-        <% News.news_list(@news_feed).each do |item| %>
-		  <li> <%= item %> </li>
-        <% end %>
-      </ul>
-    </div>
+    <div class="marquee">
+      <% news = "" %>
+      <% News.news_list(@news_feed).each do |item| %>
+	    <% news += item %>
+      <% end %>
+	  <p><%= news %></p>
+	</div>
   </div>
 </div>
