@@ -6,5 +6,7 @@ Rails.application.routes.draw do
 
   root to: 'kiosk#show'
 
-  get "/testing", to: "kiosk\#testing"
+  KioskController::DEPTS.each do |d|
+    get "/#{d}", to: "kiosk\##{d}"
+  end
 end
