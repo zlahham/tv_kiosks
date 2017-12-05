@@ -1,8 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'bootstrap-sass'
+# gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem 'bootstrap-wysihtml5-rails'
 gem 'cancancan', '~> 2.0'
 gem 'devise'
+gem 'font-awesome-rails'
 gem 'httparty', '~> 0.15.6'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
@@ -14,7 +17,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'wysiwyg-rails'
 
 group :development do
   gem 'better_errors'

@@ -17,11 +17,10 @@
 <% post = Post.last %>
 <div id="div-tab">
   <% if post.category == "news" %>
-    <%= image_tag("news.png", id: "tab-icon") %>
-    News
+    <h1><span class="badge badge-light">News  <%= fa_icon("rss") %></span></h1>
+
   <% elsif post.category == "event" %>
-    <%= image_tag("event.png", id: "tab-icon") %>
-    Event
+    <h1><span class="badge badge-light">Event  <%= fa_icon("calendar") %></span></h1>
   <% end %>
 </div>
 
@@ -32,7 +31,7 @@
         <%= post.title %>
       </div>
       <div class="col-sm-6">
-        <%= post.content %>
+        <%= post.content.html_safe %>
       </div>
     </div>
     <div class="row">
@@ -47,9 +46,9 @@
 <div id="div-footer">
   <div id="div-tfl-widget" class="footer-widget">
     <% if TFL.no_disruptions %>
-     <%= "Good service on all lines." %>
+      <%= "Good service on all lines." %>
     <% else %>
-    <!-- TODO cycle through disruptions -->
+      <!-- TODO cycle through disruptions -->
       <%= TFL.disruptions[0] %>
     <% end %>
   </div>

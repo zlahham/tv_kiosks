@@ -14,11 +14,31 @@ class Post < ApplicationRecord
   end
 
   rails_admin do
+    # parent User
+
     edit do
       group :default do
         label 'Post information'
         help 'Please fill all information related to your post...'
       end
+
+      field :user
+      field :title
+      field :content, :wysihtml5 do
+        config_options toolbar: {
+          fa: true,
+          image: false,
+          'font-styles': false,
+          color: true,
+          emphasis: {
+            small: false
+          }
+        }
+      end
+      field :date
+      field :category
+      field :duration
+      field :expires_on
     end
 
     list do

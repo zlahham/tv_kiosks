@@ -1,5 +1,5 @@
 RailsAdmin.config do |config|
-  config.main_app_name = ["UCL Engineering TV Kiosks", "CMS"]
+  config.main_app_name = ['UCL Engineering TV Kiosks', 'CMS']
 
   # == Devise ==
   config.authenticate_with do
