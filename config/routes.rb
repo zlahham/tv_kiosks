@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resource :kiosk
 
   root to: 'kiosk#show'
+
+  get "/testing", to: "kiosk\#testing"
 end

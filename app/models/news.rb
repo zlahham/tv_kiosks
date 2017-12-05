@@ -4,13 +4,17 @@ require 'httparty'
 
 class News
   #BBC top headlines from newsAPI
-  bbc_url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=#{Rails.application.secrets.news_api_key}"
+  bbc_url = "https://newsapi.org/v2/top-headlines?"\
+	  	    "sources=bbc-news&"\
+			"apiKey=#{Rails.application.secrets.news_api_key}"
   bbc_response = HTTParty.get(bbc_url)
   bbc_news_hash = bbc_response.parsed_response
   @@bbc_articles = bbc_news_hash['articles']
 
   #UCL Faculty of Engineering RSS feed
-  eng_url = "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.engineering.ucl.ac.uk%2Fnews-articles%2Ffeed%2F"
+  eng_url = "https://api.rss2json.com/v1/api.json?"\
+  			"rss_url=http%3A%2F%2Fwww.engineering.ucl.ac.uk"\
+			"%2Fnews-articles%2Ffeed%2F"
   eng_response = HTTParty.get(eng_url)
   eng_news_hash = eng_response.parsed_response
   @@eng_articles = eng_news_hash['items']
