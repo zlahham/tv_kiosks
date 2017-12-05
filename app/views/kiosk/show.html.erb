@@ -57,10 +57,10 @@
   <div id="div-news-feed" class="footer-widget">
 	<div class="ticker">
       <ul>
-        <% News.newslist2.each do |item| %>
+        <% News.engineering_news_list.each do |item| %>
 	      <li> <%= item %> </li>
 	    <% end %>
-        <% News.newslist.each do |item| %>
+        <% News.bbc_news_list.each do |item| %>
 	      <li> <%= item %> </li>
 	    <% end %>
       </ul>
