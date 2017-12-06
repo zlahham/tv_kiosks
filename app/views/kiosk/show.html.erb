@@ -46,6 +46,7 @@
   <div class="align-self-end col-md-3">
     <%= image_tag(@ucl_logo, id: "ucl-logo") %>
   </div>
+</div>
 
 <div id="footer" class="fixed-bottom fixed-bar row text-center">
   <div id="tfl-widget" class="carousel slide col align-self-center" data-ride="carousel">
@@ -80,7 +81,7 @@
     </ol>
   </div>
   <div class="vertical-divider"></div>
-  <div id="div-news-feed" class="footer-widget">
+  <div id="news-feed" class="col align-self-center">
     <div class="marquee">
       <%= News.news_string(@news_feed) %>
     </div>
