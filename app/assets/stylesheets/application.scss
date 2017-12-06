@@ -25,6 +25,16 @@
    overflow: hidden;
  }
 
+ .carousel-indicators {
+   bottom: -0.5em;
+   li {
+     background-color: darkgray;
+   }
+   .active {
+     background-color: #2E2F30;
+   }
+ }
+
  #ucl-engineering-logo {
    position: fixed;
    left: 50% - 10%;

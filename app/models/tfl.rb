@@ -10,7 +10,7 @@ class TFL
   all_disruptions.each do |line|
     if line['lineStatuses'][0]['statusSeverity'] < 10
       @@disruptions[line['id']] =
-      line['name'] + ' Line: ' +  line['lineStatuses'][0]['statusSeverityDescription']
+        line['name'] + ' Line: ' + line['lineStatuses'][0]['statusSeverityDescription']
     end
   end
 

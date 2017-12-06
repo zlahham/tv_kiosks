@@ -65,16 +65,20 @@
 
   </div>
 </div>
-
-<!-- <div class="fixed&#45;bottom"> -->
 <div id="div-footer">
-  <div id="div-tfl-widget" class="footer-widget">
-    <% if TFL.no_disruptions %>
-      <%= "Good service on all lines." %>
-    <% else %>
-      <!-- TODO cycle through disruptions -->
-      <%= TFL.disruptions[0] %>
-    <% end %>
+  <div id="div-tfl-widget" class="footer-widget carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <p>Aleksi is pretty</p>
+      </div>
+      <div class="carousel-item">
+        <p>Zaid kills people</p>
+      </div>
+    </div>
   </div>
   <div class="vertical-divider"></div>
   <div id="div-news-feed" class="footer-widget">NOTHING NEW HAPPENED</div>
