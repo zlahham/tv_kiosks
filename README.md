@@ -1,24 +1,35 @@
-# README
+TV Kiosks
+================
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application requires:
 
-Things you may want to cover:
+- Ruby 2.4.2
+- Rails 5.1.4
 
-* Ruby version
+Getting Started
+---------------
+- `git clone repo_url`
+- `cd repo`
+- `bundle install`
+- `rails db:create`
+- `rails db:migrate`
+- `rails s`
 
-* System dependencies
+- Make sure that you replace the username and password fields in the `config/database.yml` file
 
-* Configuration
+Documentation and Support
+-------------------------
+- Which packages are required for CentOS, MacOS
+  - imagemagick, psql
 
-* Database creation
+Issues
+-------------
 
-* Database initialization
+Contributing
+------------
 
-* How to run the test suite
+Credits
+-------
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+License
+-------
