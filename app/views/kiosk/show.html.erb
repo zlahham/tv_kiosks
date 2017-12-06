@@ -19,14 +19,14 @@
   <% if post.category == "news" %>
     <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
       <div class="card-body">
-    <%= fa_icon("rss", text: 'News') %>
+        <%= fa_icon("rss", text: 'News') %>
       </div>
     </div>
 
   <% elsif post.category == "event" %>
     <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
       <div class="card-body">
-    <%= fa_icon("calendar", text: 'Event') %>
+        <%= fa_icon("calendar", text: 'Event') %>
       </div>
     </div>
   <% end %>
@@ -41,41 +41,26 @@
     </div>
     <div class="card-body">
       <h4 class="card-title">Special title treatment</h4>
-      <p class="card-text">
-      <%= post.content.html_safe %>
-      </p>
-      <!-- <a href="#" class="btn btn&#45;primary">Go somewhere</a> -->
+      <p class="card-text"><%= post.content.html_safe %></p>
+      <%= image_tag(post.attachment.url(:small)) %>
     </div>
     <div class="card-footer text-muted">
       <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
     </div>
-    <!-- </div> -->
-
-    <!-- <div class="row"> -->
-    <!--   <div class="col&#45;sm&#45;6"> -->
-    <!--   </div> -->
-    <!--   <div class="col&#45;sm&#45;6"> -->
-    <!--   </div> -->
-    <!-- </div> -->
-    <!-- <div class="row"> -->
-    <!--   <!&#45;&#45; TODO fix offset &#45;&#45;> -->
-    <!--   <div class="offset&#45;sm&#45;3 col&#45;sm&#45;6 offset&#45;sm&#45;3"> -->
-    <!--   </div> -->
-    <!-- </div> -->
 
   </div>
-</div>
-
-<!-- <div class="fixed&#45;bottom"> -->
-<div id="div-footer">
-  <div id="div-tfl-widget" class="footer-widget">
-    <% if TFL.no_disruptions? %>
-      <%= "Good service on all lines." %>
-    <% else %>
-      <!-- TODO cycle through disruptions -->
-      <%= TFL.disruptions[0] %>
-    <% end %>
   </div>
-  <div class="vertical-divider"></div>
-  <div id="div-news-feed" class="footer-widget">NOTHING NEW HAPPENED</div>
-</div>
+
+  <!-- <div class="fixed&#45;bottom"> -->
+  <div id="div-footer">
+    <div id="div-tfl-widget" class="footer-widget">
+      <% if TFL.no_disruptions? %>
+        <%= "Good service on all lines." %>
+      <% else %>
+        <!-- TODO cycle through disruptions -->
+        <%= TFL.disruptions[0] %>
+      <% end %>
+    </div>
+    <div class="vertical-divider"></div>
+    <div id="div-news-feed" class="footer-widget">NOTHING NEW HAPPENED</div>
+  </div>

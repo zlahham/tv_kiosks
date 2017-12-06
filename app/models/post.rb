@@ -6,7 +6,12 @@ class Post < ApplicationRecord
   enum category: %i[event news]
 
   has_attached_file :attachment,
-    styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+                    styles: {
+                      small: '100x100>',
+                      medium: '300x300>',
+                      thumb: '100x100>'
+                    },
+                    default_url: '/images/:style/missing.png'
 
   validates :title, :content, :category, :duration, :expires_on, presence: true
   validates :duration, inclusion: { in: MIN_DURATION..MAX_DURATION }
