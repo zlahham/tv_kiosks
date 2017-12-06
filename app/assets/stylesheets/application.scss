@@ -7,17 +7,11 @@
  $divider-color: #888;
  $content-canvas-background-color: rgba(255,255,255,0.5);
 
- $header-height: 16%;
+ $header-height: 15%;
  $footer-height: 8%;
- $div-center-height: 100% - ($header-height + $footer-height);
  $content-canvas-width: 66%;
 
  $divider-thickness: 0.1%;
-
- .fixed-bar {
-   background-color: $white;
-   margin: 0;
- }
 
  body,
  html {
@@ -25,97 +19,99 @@
    overflow: hidden;
  }
 
- #ucl-engineering-logo {
-   position: fixed;
-   left: 50% - 10%;
-   top: 2.5%;
-   max-width: 20%;
+ .card-header {
+  font-size: 2vw;
+ }
+
+ .card-title {
+   font-size: 1.8vw;
+ }
+
+ .card-text {
+  font-size: 1vw;
+ }
+
+ .fixed-bar {
+   background-color: $white;
+ }
+
+ .carousel-indicators {
+   position: absolute;
+   bottom: -1vw;
+   li {
+     background-color: darkgray;
+   }
+   .active {
+     background-color: #2E2F30;
+   }
+ }
+
+ .vertical-divider {
+   min-height: 100%;
+   border-right: 0.1vw solid black;
+ }
+
+ #footer {
+   border-top: 0.1vw;
+   border-color: black;
+   border-top-style: solid;
+   height: $footer-height;
  }
 
  #ucl-logo {
-   position: absolute;
-   bottom: 0;
-   right: 0;
-   max-width: 20%;
+   max-width: 100%;
  }
 
- #div-header {
+ #header {
    @extend .fixed-bar;
-   position: relative;
    height: $header-height;
  }
 
- #div-time-weather-date {
-   position: absolute;
-   display:flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-   top: $header-height;
-   left: 2.5%;
-
- }
-
  #div-time {
-   font-size: 2em;
+   font-size: 7vw;
    font-weight: 800;
  }
 
  #div-weather {
-   font-size: 2em;
+   font-size: 3vw;
    font-weight: 800;
  }
 
  #div-date {
-   position: fixed;
-   left: 20%;
-   font-size: 2em;
+   font-size: 2vw;
  }
 
  #div-tab {
    position: fixed;
    top: 30%;
    // background-color: $content-canvas-background-color;
-   font-size: 1.8em;
+   font-size: 2vw;
    padding: 0.5%;
    padding-left: 2%;
-   height: 3em;
+   height: 3vw;
    img {
      max-height: 100%;
      max-width: 100%;
    }
  }
 
- #div-footer {
-   @extend .fixed-bar;
-   display: flex;
-     flex-direction: row;
-     justify-content: center;
-     align-items: center;
-   height: $footer-height;
-   border-top: 1px;
-   border-color: $divider-color;
-   border-top-style: solid;
+ #tfl-widget {
+   font-size: 1.5vw;
  }
 
- #div-tfl-widget {
-   font-size: 1.25em;
- }
-
- #div-news-feed {
-   font-size: 1.25em;
+ #news-feed {
+   font-size: 1.5vw;
  }
 
  #div-center {
    background-color: $white;
    background-image: url(asset-path('background.png'));
    height: auto !important; //Cause footer to stick to bottom in IE 6 */
-   min-height: $div-center-height;
+   min-height: 100%;
    display:flex;
      flex-direction: column;
      justify-content: center;
      align-items: center;
-
  }
 
  .content-canvas {
@@ -156,4 +152,5 @@
   line-height: 100px;
   white-space: nowrap;
 }
+
 .spacer { margin:0; padding:0; height:50px; }

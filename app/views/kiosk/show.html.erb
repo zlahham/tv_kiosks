@@ -1,17 +1,3 @@
-<div id="div-header">
-  <div id="div-time-weather-date">
-    <div id="div-time">
-    </div>
-    <div id="div-weather">
-      <%= Weather.temperature %>°C <%= Weather.weather_icon %>
-    </div>
-    <div id="div-date">
-    </div>
-    <%= image_tag("ucl_engineering_logo.png", id: "ucl-engineering-logo") %>
-  </div>
-  <%= image_tag(@ucl_logo, id: "ucl-logo") %>
-</div>
-
 <% post = Post.last %>
 <div id="div-tab">
   <% if post.category == "news" %>
@@ -37,26 +23,62 @@
       <%= post.title %>
     </div>
     <div class="card-body">
-      <h4 class="card-title">Special title treatment</h4>
-      <p class="card-text"><%= post.content.html_safe %></p>
+      <h1 class="card-title">Special title treatment</h1>
+      <p class="card-text">
+      <%= post.content.html_safe %>
+      </p>
       <%= image_tag(post.attachment.url(:small)) %>
     </div>
     <div class="card-footer text-muted">
       <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
     </div>
   </div>
+</div>
 
-  <div id="div-footer">
-    <div id="div-tfl-widget" class="footer-widget">
+<div id="header" class="fixed-top fixed-bar row text-center">
+  <div id="div-time" class="align-self-center col-md-3"> </div>
+  <div class="align-self-center text-left col-md-2">
+    <div id="div-weather">
+      <%= Weather.temperature %>°C <%= Weather.weather_icon %>
+    </div>
+    <div id="div-date"> </div>
+  </div>
+  <div class="offset-md-4"> </div>
+  <div class="align-self-end col-md-3">
+    <%= image_tag(@ucl_logo, id: "ucl-logo") %>
+  </div>
+
+<div id="footer" class="fixed-bottom fixed-bar row text-center">
+  <div id="tfl-widget" class="carousel slide col align-self-center" data-ride="carousel">
+    <div class="carousel-inner">
       <% if TFL.no_disruptions? %>
-        <%= "Good service on all lines." %>
+        <div class="carousel-item active">
+          Good service on all lines.
+        </div>
       <% else %>
-        <!-- TODO cycle through disruptions -->
-        <%= TFL.disruptions[0] %>
+        <div class="carousel-item active">
+          <%= TFL.disruptions[0] %>
+        </div>
+        <% TFL.disruptions.each_with_index do |disruption, index| %>
+          <% unless index == 0 %>
+            <div class="carousel-item">
+              <%= TFL.disruptions[index] %>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
     </div>
-    <div class="vertical-divider"></div>
-    <div id="div-news-feed" class="footer-widget">NOTHING NEW HAPPENED</div>
+    <ol class="carousel-indicators">
+      <% if TFL.disruptions.length > 1 %>
+        <% TFL.disruptions.each_with_index do |disruption, index| %>
+          <% if index == 0 %>
+            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+          <% else %>
+            <li data-target="#carouselIndicators" data-slide-to="<% index %>"></li>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ol>
   </div>
   <div class="vertical-divider"></div>
   <div id="div-news-feed" class="footer-widget">
