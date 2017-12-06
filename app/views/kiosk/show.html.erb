@@ -18,7 +18,6 @@
 
 <div id="div-center">
 
-  <!-- <div class="content&#45;canvas"> -->
   <div class="card border-info mb-3">
     <div class="card-header text-center">
       <%= post.title %>
@@ -28,25 +27,10 @@
       <p class="card-text">
       <%= post.content.html_safe %>
       </p>
-      <!-- <a href="#" class="btn btn&#45;primary">Go somewhere</a> -->
     </div>
     <div class="card-footer text-muted">
       <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
     </div>
-    <!-- </div> -->
-
-    <!-- <div class="row"> -->
-    <!--   <div class="col&#45;sm&#45;6"> -->
-    <!--   </div> -->
-    <!--   <div class="col&#45;sm&#45;6"> -->
-    <!--   </div> -->
-    <!-- </div> -->
-    <!-- <div class="row"> -->
-    <!--   <!&#45;&#45; TODO fix offset &#45;&#45;> -->
-    <!--   <div class="offset&#45;sm&#45;3 col&#45;sm&#45;6 offset&#45;sm&#45;3"> -->
-    <!--   </div> -->
-    <!-- </div> -->
-
   </div>
 </div>
 
@@ -97,5 +81,9 @@
     </ol>
   </div>
   <div class="vertical-divider"></div>
-  <div id="news-feed" class="col align-self-center">NOTHING NEW HAPPENED</div>
+  <div id="div-news-feed" class="footer-widget">
+    <div class="marquee">
+	  <p><%= News.news_string(@news_feed) %></p>
+	</div>
+  </div>
 </div>
