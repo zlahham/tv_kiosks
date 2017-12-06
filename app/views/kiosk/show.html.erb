@@ -23,7 +23,6 @@
       <%= post.title %>
     </div>
     <div class="card-body">
-      <h1 class="card-title">Special title treatment</h1>
       <p class="card-text">
       <%= post.content.html_safe %>
       </p>
@@ -83,7 +82,7 @@
   <div class="vertical-divider"></div>
   <div id="div-news-feed" class="footer-widget">
     <div class="marquee">
-      <p><%= News.news_string(@news_feed) %></p>
+      <%= News.news_string(@news_feed) %>
     </div>
   </div>
 </div>
