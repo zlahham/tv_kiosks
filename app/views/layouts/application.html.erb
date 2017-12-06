@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TvKiosks</title>
+    <title>UCL Engineering TV Kiosk</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,8 +9,9 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="mx-4 my-1">
+      <%= flash_messages %>
+    </div>
 
     <%= yield %>
   </body>

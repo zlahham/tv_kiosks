@@ -1,4 +1,6 @@
 RailsAdmin.config do |config|
+  config.main_app_name = ['UCL Engineering TV Kiosks', 'CMS']
+
   # == Devise ==
   config.authenticate_with do
     warden.authenticate! scope: :user
@@ -7,12 +9,6 @@ RailsAdmin.config do |config|
 
   ## == Cancancan ==
   config.authorize_with :cancan
-  # config.authorize_with :cancancan
-
-  # config.model Post do
-  #   field :title
-  #   field :content, :text, :ckeditor
-  # end
 
   config.actions do
     dashboard                     # mandatory
