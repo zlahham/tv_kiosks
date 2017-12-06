@@ -65,7 +65,7 @@
 </div>
 
 <div id="footer" class="fixed-bottom fixed-bar row align-items-center text-center">
-  <div id="tfl-widget" class="footer-widget carousel slide col" data-ride="carousel">
+  <div id="tfl-widget" class="carousel slide col" data-ride="carousel">
     <ol class="carousel-indicators align-self-end">
       <% unless TFL.no_disruptions %>
         <% TFL.disruptions.each_with_index do |disruption, index| %>
@@ -96,5 +96,6 @@
       <% end %>
     </div>
   </div>
-  <div id="news-feed" class="footer-widget col">NOTHING NEW HAPPENED</div>
+  <div class="vertical-divider"></div>
+  <div id="news-feed" class="col">NOTHING NEW HAPPENED</div>
 </div>

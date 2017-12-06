@@ -13,14 +13,14 @@
 
  $divider-thickness: 0.1%;
 
- .fixed-bar {
-   background-color: $white;
- }
-
  body,
  html {
    height: 100%;
    overflow: hidden;
+ }
+
+ .fixed-bar {
+   background-color: $white;
  }
 
  .carousel-indicators {
@@ -33,6 +33,11 @@
    }
  }
 
+ .vertical-divider {
+   min-height: 100%;
+   border-right: 1px solid black;
+ }
+
  #footer {
    border-top: 1px;
    border-color: black;
@@ -41,23 +46,12 @@
  }
 
  #ucl-logo {
-   bottom: 0;
    max-width: 100%;
  }
 
  #header {
    @extend .fixed-bar;
    height: $header-height;
- }
-
- #div-time-weather-date {
-   position: absolute;
-   display:flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-   top: $header-height;
-   left: 2.5%;
  }
 
  #div-time {
@@ -90,7 +84,6 @@
 
  #tfl-widget {
    font-size: 1.25em;
-   border-right: 1px solid black;
  }
 
  #news-feed {
@@ -106,7 +99,6 @@
      flex-direction: column;
      justify-content: center;
      align-items: center;
-
  }
 
  .content-canvas {
