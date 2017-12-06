@@ -9,7 +9,7 @@ class News
 			"apiKey=#{Rails.application.secrets.news_api_key}"
   bbc_response = HTTParty.get(BBC_url)
   bbc_news_hash = bbc_response.parsed_response
-  @@bbc_articles = bbc_news_hash['articles']
+  bbc_articles = bbc_news_hash['articles']
 
   #UCL Faculty of Engineering RSS feed
   Eng_url = "https://api.rss2json.com/v1/api.json?"\
@@ -17,26 +17,28 @@ class News
 			"%2Fnews-articles%2Ffeed%2F"
   eng_response = HTTParty.get(Eng_url)
   eng_news_hash = eng_response.parsed_response
-  @@eng_articles = eng_news_hash['items']
+  eng_articles = eng_news_hash['items']
+  
+  @@bbc = { articles: bbc_articles, title_field_name: "title",
+		  content_field_name: "description" }
+  @@engineering = { articles: eng_articles, title_field_name: "title",
+		  content_field_name: "content" }
 
   def self.news_list(news_feed)
-	if news_feed == "BBC_feed"
-	  articles = @@bbc_articles
-	  title_field = "title"
-	  content_field = "description"
-	elsif news_feed == "engineering_feed"
-	  articles = @@eng_articles
-	  title_field = "title"
-	  content_field = "content"
+	case news_feed
+	when "bbc_feed"
+	  articles = @@bbc
+	when "engineering_feed"
+	  articles = @@engineering
 	end
-
+	
     #insert mdash between news item title and news item content
-    title_delimiter = "\u2014"
+	title_delimiter = "\u2014"
 
 	news_list = Array.new
-	articles.each do |article|
-	  title = strip_tags(article["#{title_field}"])
-	  content = strip_tags(article["#{content_field}"])
+	articles[:articles].each do |article|
+      title   = strip_tags(article["#{articles[:title_field_name]}"])
+      content = strip_tags(article["#{articles[:content_field_name]}"])
       news_list << "#{title}#{title_delimiter}#{content}"
     end
 	news_list

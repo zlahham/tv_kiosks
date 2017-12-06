@@ -17,7 +17,7 @@ class KioskController < ApplicationController
       @ucl_logo = 'ucl_logo.png'
     end
     if @news_feed.blank?
-      @news_feed = "BBC_feed"
+      @news_feed = "bbc_feed"
     end
   end
 
