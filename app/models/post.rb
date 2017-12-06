@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  attr_accessor :delete_attachment
   MIN_DURATION = 5
   MAX_DURATION = 30
 
@@ -18,6 +19,8 @@ class Post < ApplicationRecord
   validate :expiry_cannot_be_in_past, on: %i[create update]
   validates_attachment :attachment, content_type: { content_type: ['image/jpeg', 'image/gif', 'image/png'] }
   validates_attachment :attachment, file_name: { matches: [/png\z/, /jpe?g\z/] }
+
+  before_validation { attachment.clear if delete_attachment == '1' }
 
   def expiry_cannot_be_in_past
     errors.add(:expires_on, ' cannot be in the past!') if expires_on < Time.now

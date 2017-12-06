@@ -19,8 +19,22 @@ Getting Started
 
 Documentation and Support
 -------------------------
-- Which packages are required for CentOS, MacOS
-  - imagemagick, psql
+Required packages:
+
+- imagemagick
+
+```
+On macOS:
+brew install imagemagick
+
+On Ubuntu:
+sudo apt-get install imagemagick
+
+On CentOS:
+sudo yum install ImageMagick
+```
+
+- psql
 
 Issues
 -------------
