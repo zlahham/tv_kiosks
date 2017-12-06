@@ -3,14 +3,14 @@
   <% if post.category == "news" %>
     <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
       <div class="card-body">
-    <%= fa_icon("rss", text: 'News') %>
+        <%= fa_icon("rss", text: 'News') %>
       </div>
     </div>
 
   <% elsif post.category == "event" %>
     <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
       <div class="card-body">
-    <%= fa_icon("calendar", text: 'Event') %>
+        <%= fa_icon("calendar", text: 'Event') %>
       </div>
     </div>
   <% end %>
@@ -23,10 +23,10 @@
       <%= post.title %>
     </div>
     <div class="card-body">
-      <h1 class="card-title">Special title treatment</h1>
       <p class="card-text">
       <%= post.content.html_safe %>
       </p>
+      <%= image_tag(post.attachment.url(:small)) %>
     </div>
     <div class="card-footer text-muted">
       <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
@@ -46,12 +46,11 @@
   <div class="align-self-end col-md-3">
     <%= image_tag(@ucl_logo, id: "ucl-logo") %>
   </div>
-</div>
 
 <div id="footer" class="fixed-bottom fixed-bar row text-center">
   <div id="tfl-widget" class="carousel slide col align-self-center" data-ride="carousel">
     <div class="carousel-inner">
-      <% if TFL.no_disruptions %>
+      <% if TFL.no_disruptions? %>
         <div class="carousel-item active">
           Good service on all lines.
         </div>
@@ -83,7 +82,7 @@
   <div class="vertical-divider"></div>
   <div id="div-news-feed" class="footer-widget">
     <div class="marquee">
-	  <p><%= News.news_string(@news_feed) %></p>
-	</div>
+      <%= News.news_string(@news_feed) %>
+    </div>
   </div>
 </div>

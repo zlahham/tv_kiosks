@@ -1,24 +1,49 @@
-# README
+TV Kiosks
+================
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application requires:
 
-Things you may want to cover:
+- Ruby 2.4.2
+- Rails 5.1.4
 
-* Ruby version
+Getting Started
+---------------
+- `git clone repo_url`
+- `cd repo`
+- `bundle install`
+- `rails db:create`
+- `rails db:migrate`
+- `rails s`
 
-* System dependencies
+- Make sure that you replace the username and password fields in the `config/database.yml` file
 
-* Configuration
+Documentation and Support
+-------------------------
+Required packages:
 
-* Database creation
+- imagemagick
 
-* Database initialization
+```
+On macOS:
+brew install imagemagick
 
-* How to run the test suite
+On Ubuntu:
+sudo apt-get install imagemagick
 
-* Services (job queues, cache servers, search engines, etc.)
+On CentOS:
+sudo yum install ImageMagick
+```
 
-* Deployment instructions
+- psql
 
-* ...
+Issues
+-------------
+
+Contributing
+------------
+
+Credits
+-------
+
+License
+-------
