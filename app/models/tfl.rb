@@ -10,7 +10,7 @@ class TFL
   all_disruptions.each do |line|
     if line['lineStatuses'][0]['statusSeverity'] < 10
       @@disruptions[line['id']] =
-      line['name'] + ' Line: ' +  line['lineStatuses'][0]['statusSeverityDescription']
+        line['name'] + ' Line: ' + line['lineStatuses'][0]['statusSeverityDescription']
     end
   end
 
@@ -19,11 +19,10 @@ class TFL
     @@disruptions.each_with_index do |disruption, index|
       list[index] = disruption[1]
     end
-    return list
+    list
   end
 
-  def self.no_disruptions
-    disruption_list = self.disruptions
-    return disruption_list.blank?
+  def self.no_disruptions?
+    disruptions.blank?
   end
 end
