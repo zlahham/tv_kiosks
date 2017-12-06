@@ -6,14 +6,14 @@ $( document ).ready(function() {
 	allowCss3Support: true,
 	css3easing: 'linear',
 	// note: the other options affect speed as well
-	speed: 100,
+	speed: 50,
 	//time in milliseconds before the marquee will start animating
 	delayBeforeStart: 0,
 	direction: 'left',
 	//true or false - should the marquee be duplicated to show an effect of continuous flow
-	duplicated: false,
+	duplicated: true,
 	//gap in pixels between the tickers (only works when duplicated is true)
-	gap: 50
+	gap: 1000
   });
 
   // jQuery ticker; currently not in use. Uncomment this and the code

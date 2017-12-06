@@ -52,8 +52,12 @@ class News
 	item_delimiter = "\u2014" * 10
 
 	news_string = ""
-    self.news_list(news_feed).each do |item|
-	  news_string += "#{item}#{item_delimiter}"
+    self.news_list(news_feed).each_with_index do |item, index|
+	  if index < (news_list(news_feed).size - 1)
+	    news_string += "#{item}#{item_delimiter}"
+	  else
+	    news_string += "#{item}"
+	  end
 	end
 	return news_string
   end
