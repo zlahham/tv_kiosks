@@ -1,8 +1,8 @@
 require 'httparty'
 
 class TFL
-  url = "https://api.tfl.gov.uk/line/mode/tube/status?app_id=#{Rails.application.secrets.tfl_app_id}&app_key=#{Rails.application.secrets.tfl_api_key}"
-  response = HTTParty.get(url)
+  Url = "https://api.tfl.gov.uk/line/mode/tube/status?app_id=#{Rails.application.secrets.tfl_app_id}&app_key=#{Rails.application.secrets.tfl_api_key}"
+  response = HTTParty.get(Url)
   all_disruptions = response.parsed_response
 
   @@disruptions = {}

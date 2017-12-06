@@ -5,7 +5,7 @@ class KioskController < ApplicationController
   DEPTS.each do |d|
     define_method(:"#{d}") {
       @ucl_logo = "ucl_logo_#{d}.png"
-	  if %w(chemeng civil compsci eleceng mecheng).include? d
+	  if %w[chemeng civil compsci eleceng mecheng].include?(d)
 	    @news_feed = "engineering_feed"
 	  end
       render action: :show
