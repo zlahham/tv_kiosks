@@ -1,6 +1,5 @@
- // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
- @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import "font-awesome";
 
  //Variable definitions
  $white: #fff;
@@ -58,7 +57,7 @@
  }
 
  #div-time {
-   font-size: 4em;
+   font-size: 2em;
    font-weight: 800;
  }
 
@@ -76,7 +75,7 @@
  #div-tab {
    position: fixed;
    top: 30%;
-   background-color: $content-canvas-background-color;
+   // background-color: $content-canvas-background-color;
    font-size: 1.8em;
    padding: 0.5%;
    padding-left: 2%;
@@ -157,3 +156,4 @@
   line-height: 100px;
   white-space: nowrap;
 }
+.spacer { margin:0; padding:0; height:50px; }
