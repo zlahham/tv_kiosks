@@ -1,38 +1,37 @@
 require 'httparty'
 
 class Weather
-  URL = "https://api.openweathermap.org/data/2.5/weather?id=2643743&units=metric&appid=#{Rails.application.secrets.weather_app_id}".freeze
-  response = HTTParty.get(URL)
+  URL = 'https://api.openweathermap.org/data/2.5/weather?'\
+        'id=2643743&units=metric&appid='\
+        "#{Rails.application.secrets.weather_app_id}".freeze
 
-  @@weather_data = response.parsed_response
-  @@temperature = @@weather_data['main']['temp']
+  class << self
+    @@weather_data = HTTParty.get(URL).parsed_response
+    @@temperature = @@weather_data['main']['temp']
 
-  def self.temperature
-    @@temperature.to_i
-  end
+    def temperature
+      @@temperature.to_i
+    end
 
-  def self.weather_icon
-    icon_code = @@weather_data['weather'][0]['icon']
-    weather_icon = case icon_code
-                   when '01d'
-                     '☀️'
-                   when '01n', '02n'
-                     '🌙'
-                   when '02d'
-                     '🌤'
-                   when '03d', '03n', '04d', '04n'
-                     '☁️'
-                   when '09d', '09n', '10n'
-                     '🌧'
-                   when '10d'
-                     '🌦'
-                   when '11d', '11n'
-                     '⛈'
-                   when '13d', '13n'
-                     '❄️'
-                   when '50d', '50n'
-                     '🌫'
-                   end
-    weather_icon
+    def weather_icon
+      icon_code = @@weather_data['weather'][0]['icon']
+      find_icon(icon_code)
+    end
+
+    def find_icon(icon_code)
+      case icon_code
+      when '01d'                      then '☀️'
+      when '01n', '02n'               then '🌙'
+      when '02d'                      then '🌤'
+      when '03d', '03n', '04d', '04n' then '☁️'
+      when '09d', '09n', '10n'        then '🌧'
+      when '10d'                      then '🌦'
+      when '11d', '11n'               then '⛈'
+      when '13d', '13n'               then '❄️'
+      when '50d', '50n'               then '🌫'
+      else
+        ''
+      end
+    end
   end
 end
