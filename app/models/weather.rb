@@ -1,7 +1,9 @@
 require 'httparty'
 
 class Weather
-  URL = "https://api.openweathermap.org/data/2.5/weather?id=2643743&units=metric&appid=#{Rails.application.secrets.weather_app_id}".freeze
+  URL = "https://api.openweathermap.org/data/2.5/"\
+	  "weather?id=2643743&units=metric&appid="\
+	  "#{Rails.application.secrets.weather_app_id}".freeze
   response = HTTParty.get(URL)
 
   @@weather_data = response.parsed_response
