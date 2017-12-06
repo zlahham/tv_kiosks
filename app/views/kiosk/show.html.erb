@@ -24,7 +24,7 @@
       <%= post.title %>
     </div>
     <div class="card-body">
-      <h4 class="card-title">Special title treatment</h4>
+      <h1 class="card-title">Special title treatment</h1>
       <p class="card-text">
       <%= post.content.html_safe %>
       </p>
@@ -64,23 +64,12 @@
   </div>
 </div>
 
-<div id="footer" class="fixed-bottom fixed-bar row align-items-center text-center">
-  <div id="tfl-widget" class="carousel slide col" data-ride="carousel">
-    <ol class="carousel-indicators align-self-end">
-      <% unless TFL.no_disruptions %>
-        <% TFL.disruptions.each_with_index do |disruption, index| %>
-          <% if index == 0 %>
-            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-          <% else %>
-            <li data-target="#carouselIndicators" data-slide-to="<% index %>"></li>
-          <% end %>
-        <% end %>
-      <% end %>
-    </ol>
+<div id="footer" class="fixed-bottom fixed-bar row text-center">
+  <div id="tfl-widget" class="carousel slide col align-self-center" data-ride="carousel">
     <div class="carousel-inner">
       <% if TFL.no_disruptions %>
         <div class="carousel-item active">
-          <p>Good service on all lines.</p>
+          Good service on all lines.
         </div>
       <% else %>
         <div class="carousel-item active">
@@ -95,7 +84,18 @@
         <% end %>
       <% end %>
     </div>
+    <ol class="carousel-indicators">
+      <% if TFL.disruptions.length > 1 %>
+        <% TFL.disruptions.each_with_index do |disruption, index| %>
+          <% if index == 0 %>
+            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+          <% else %>
+            <li data-target="#carouselIndicators" data-slide-to="<% index %>"></li>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ol>
   </div>
   <div class="vertical-divider"></div>
-  <div id="news-feed" class="col">NOTHING NEW HAPPENED</div>
+  <div id="news-feed" class="col align-self-center">NOTHING NEW HAPPENED</div>
 </div>
