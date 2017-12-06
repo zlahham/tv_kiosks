@@ -13,8 +13,8 @@ class TFL
         @@disruptions[line['id']] = "#{line_name(line)} Line: #{line_status(line)}"
       end
 
-      @@disruptions.each_with_index.inject([]) do |acc, (disruption, index)|
-        acc[index] = disruption[1]
+      @@disruptions.each.inject([]) do |acc, (_key, value)|
+        acc << value
       end
     end
 
