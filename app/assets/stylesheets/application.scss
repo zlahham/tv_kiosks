@@ -7,16 +7,14 @@
  $divider-color: #888;
  $content-canvas-background-color: rgba(255,255,255,0.5);
 
- $header-height: 16%;
+ $header-height: 15%;
  $footer-height: 8%;
- $div-center-height: 100% - ($header-height + $footer-height);
  $content-canvas-width: 66%;
 
  $divider-thickness: 0.1%;
 
  .fixed-bar {
    background-color: $white;
-   margin: 0;
  }
 
  body,
@@ -26,7 +24,7 @@
  }
 
  .carousel-indicators {
-   bottom: -0.5em;
+   bottom: -0.8em;
    li {
      background-color: darkgray;
    }
@@ -35,23 +33,20 @@
    }
  }
 
- #ucl-engineering-logo {
-   position: fixed;
-   left: 50% - 10%;
-   top: 2.5%;
-   max-width: 20%;
+ #footer {
+   border-top: 1px;
+   border-color: black;
+   border-top-style: solid;
+   height: $footer-height;
  }
 
  #ucl-logo {
-   position: absolute;
    bottom: 0;
-   right: 0;
-   max-width: 20%;
+   max-width: 100%;
  }
 
- #div-header {
+ #header {
    @extend .fixed-bar;
-   position: relative;
    height: $header-height;
  }
 
@@ -63,11 +58,10 @@
      align-items: center;
    top: $header-height;
    left: 2.5%;
-
  }
 
  #div-time {
-   font-size: 2em;
+   font-size: 5em;
    font-weight: 800;
  }
 
@@ -77,9 +71,7 @@
  }
 
  #div-date {
-   position: fixed;
-   left: 20%;
-   font-size: 2em;
+   font-size: 1.5em;
  }
 
  #div-tab {
@@ -96,23 +88,12 @@
    }
  }
 
- #div-footer {
-   @extend .fixed-bar;
-   display: flex;
-     flex-direction: row;
-     justify-content: center;
-     align-items: center;
-   height: $footer-height;
-   border-top: 1px;
-   border-color: $divider-color;
-   border-top-style: solid;
- }
-
- #div-tfl-widget {
+ #tfl-widget {
    font-size: 1.25em;
+   border-right: 1px solid black;
  }
 
- #div-news-feed {
+ #news-feed {
    font-size: 1.25em;
  }
 
@@ -120,7 +101,7 @@
    background-color: $white;
    background-image: url(asset-path('background.png'));
    height: auto !important; //Cause footer to stick to bottom in IE 6 */
-   min-height: $div-center-height;
+   min-height: 100%;
    display:flex;
      flex-direction: column;
      justify-content: center;
@@ -133,19 +114,6 @@
    width: $content-canvas-width;
    flex-grow: 0.7;
    padding: 5%;
- }
-
- .footer-widget {
-   width: (100% - $divider-thickness) / 2;
-   text-align: center;
- }
-
- .vertical-divider {
-   background-color: $divider-color;
-   height: ($footer-height - $divider-thickness);
-   left: (100% - $divider-thickness) / 2;
-   position: absolute;
-   width: $divider-thickness;
  }
 
 .spacer { margin:0; padding:0; height:50px; }

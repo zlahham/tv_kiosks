@@ -22,6 +22,7 @@ class TFL
     return list
   end
 
+
   def self.no_disruptions
     disruption_list = self.disruptions
     return disruption_list.blank?
