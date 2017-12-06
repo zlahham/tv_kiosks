@@ -9,9 +9,7 @@
     </div>
     <%= image_tag("ucl_engineering_logo.png", id: "ucl-engineering-logo") %>
   </div>
-
   <%= image_tag(@ucl_logo, id: "ucl-logo") %>
-
 </div>
 
 <% post = Post.last %>
@@ -51,7 +49,6 @@
   </div>
   </div>
 
-  <!-- <div class="fixed&#45;bottom"> -->
   <div id="div-footer">
     <div id="div-tfl-widget" class="footer-widget">
       <% if TFL.no_disruptions? %>
@@ -64,3 +61,10 @@
     <div class="vertical-divider"></div>
     <div id="div-news-feed" class="footer-widget">NOTHING NEW HAPPENED</div>
   </div>
+  <div class="vertical-divider"></div>
+  <div id="div-news-feed" class="footer-widget">
+    <div class="marquee">
+      <p><%= News.news_string(@news_feed) %></p>
+    </div>
+  </div>
+</div>

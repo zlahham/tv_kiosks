@@ -138,4 +138,22 @@
    width: $divider-thickness;
  }
 
+//Visually removes weird p tags
+//TODO Better solution?
+.notice, .alert {
+ margin: 0;
+ border: 0;
+ padding: 0;
+}
+
+.marquee {
+  // If you resize the screen, the width does not update
+  // (need to refresh the page)
+  width: 100%;
+  overflow: hidden;
+  // Center the text; someone who actually knows CSS, please look at this
+  height: 100px;
+  line-height: 100px;
+  white-space: nowrap;
+}
 .spacer { margin:0; padding:0; height:50px; }
