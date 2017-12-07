@@ -12,7 +12,7 @@ class Post < ApplicationRecord
                       medium: '300x300>',
                       thumb: '100x100>'
                     },
-                    default_url: '/images/:style/missing.png'
+                    default_url: ''
 
   validates :title, :content, :category, :duration, :expires_on, presence: true
   validates :duration, inclusion: { in: MIN_DURATION..MAX_DURATION }
