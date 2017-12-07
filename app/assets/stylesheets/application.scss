@@ -115,6 +115,12 @@
    align-items: center;
  }
 
+ .post {
+   top: 4vh;
+   width: 70vw;
+   height: 60vh;
+ }
+
  .content-canvas {
    background-color: $content-canvas-background-color;
    width: $content-canvas-width;
