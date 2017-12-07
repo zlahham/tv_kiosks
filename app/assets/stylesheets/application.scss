@@ -20,15 +20,15 @@
  }
 
  .card-header {
-  font-size: 2vw;
+  font-size: 3vh;
  }
 
  .card-title {
-   font-size: 1.8vw;
+   font-size: 2.5vh;
  }
 
  .card-text {
-  font-size: 1vw;
+  font-size: 2vh;
  }
 
  .fixed-bar {
@@ -37,7 +37,7 @@
 
  .carousel-indicators {
    position: absolute;
-   bottom: -1vw;
+   bottom: -2vh;
    li {
      background-color: darkgray;
    }
@@ -48,13 +48,12 @@
 
  .vertical-divider {
    min-height: 100%;
-   border-right: 0.1vw solid black;
+   border-right: 0.1vh solid black;
  }
 
  #footer {
-   border-top: 0.1vw;
    border-color: black;
-   border-top-style: solid;
+   border-top: 0.1vh solid;
    height: $footer-height;
  }
 
@@ -68,27 +67,25 @@
  }
 
  #div-time {
-   font-size: 7vw;
+   font-size: 12vh;
    font-weight: 800;
  }
 
  #div-weather {
-   font-size: 3vw;
+   font-size: 5vh;
    font-weight: 800;
  }
 
  #div-date {
-   font-size: 2vw;
+   font-size: 3vh;
  }
 
  #div-tab {
    position: fixed;
    top: 30%;
-   // background-color: $content-canvas-background-color;
-   font-size: 2vw;
+   font-size: 3vh;
    padding: 0.5%;
    padding-left: 2%;
-   height: 3vw;
    img {
      max-height: 100%;
      max-width: 100%;
@@ -96,11 +93,11 @@
  }
 
  #tfl-widget {
-   font-size: 1.5vw;
+   font-size: 2.5vh;
  }
 
  #news-feed {
-   font-size: 1.5vw;
+   font-size: 2.5vh;
    // If you resize the screen, the width does not update
    // (need to refresh the page)
    width: 100%;
@@ -109,8 +106,7 @@
  }
 
  #div-center {
-   background-color: $white;
-   background-image: url(asset-path('background.png'));
+   background: $white url(asset-path('background.png'));
    height: auto !important; //Cause footer to stick to bottom in IE 6 */
    min-height: 100%;
    display:flex;
