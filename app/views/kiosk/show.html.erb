@@ -16,15 +16,16 @@
   <% end %>
 </div>
 
+
 <div id="div-center">
 
-  <div class="card border-info mb-3">
+  <div class="card border-info mb-3 post">
     <div class="card-header text-center">
       <%= post.title %>
     </div>
     <div class="card-body">
       <p class="card-text">
-      <%= post.content.html_safe %>
+        <%= post.content.html_safe %>
       </p>
       <%= image_tag(post.attachment.url(:small)) %>
     </div>
@@ -49,33 +50,25 @@
 </div>
 
 <div id="footer" class="fixed-bottom fixed-bar row text-center">
-  <div id="tfl-widget" class="carousel slide col align-self-center" data-ride="carousel">
+  <div id="tfl-indicator"></div>
+  <div id="tfl-widget" class="carousel slide col-md-4 align-self-center" data-ride="carousel">
     <div class="carousel-inner">
       <% if TFL.no_disruptions? %>
         <div class="carousel-item active">
           Good service on all lines.
         </div>
       <% else %>
-        <div class="carousel-item active">
-          <%= TFL.disruptions[0] %>
-        </div>
-        <% TFL.disruptions.each_with_index do |disruption, index| %>
-          <% unless index == 0 %>
-            <div class="carousel-item">
-              <%= TFL.disruptions[index] %>
-            </div>
-          <% end %>
+        <% TFL.disrupted_lines.each_with_index do |line, index| %>
+          <div class="carousel-item <%= index == 0 ? 'active' : ''%>">
+            <%= TFL.line_name(line) %> Line: <%= TFL.line_status(line) %>
+          </div>
         <% end %>
       <% end %>
     </div>
     <ol class="carousel-indicators">
-      <% if TFL.disruptions.length > 1 %>
-        <% TFL.disruptions.each_with_index do |disruption, index| %>
-          <% if index == 0 %>
-            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-          <% else %>
-            <li data-target="#carouselIndicators" data-slide-to="<% index %>"></li>
-          <% end %>
+      <% if TFL.disrupted_lines.length > 1 %>
+        <% TFL.disrupted_lines.each_with_index do |line, index| %>
+          <li data-target="#carouselIndicators" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : ''%>" ></li>
         <% end %>
       <% end %>
     </ol>
