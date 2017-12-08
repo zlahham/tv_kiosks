@@ -17,39 +17,20 @@
 </div>
 
 
-<div id="div-center" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner" role="listbox">
-    <div class="card border-info carousel-item active">
-      <div class="card-header text-center">
-        <%= post.title %>
-      </div>
-      <div class="card-body">
-        <p class="card-text">
-          <%= post.content.html_safe %>
-        </p>
-        <%= image_tag(post.attachment.url(:small)) %>
-      </div>
-      <div class="card-footer text-muted">
-        <% unless post.date.nil? %>
-          <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
-        <% end %>
-      </div>
+<div id="div-center">
+
+  <div class="card border-info mb-3 post">
+    <div class="card-header text-center">
+      <%= post.title %>
     </div>
-    <div class="card border-info  carousel-item">
-      <div class="card-header text-center">
-        <%= post.title %>
-      </div>
-      <div class="card-body">
-        <p class="card-text">
-          <%= post.content.html_safe %>
-        </p>
-        <%= image_tag(post.attachment.url(:small)) %>
-      </div>
-      <div class="card-footer text-muted">
-        <% unless post.date.nil? %>
-          <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
-        <% end %>
-      </div>
+    <div class="card-body">
+      <p class="card-text">
+        <%= post.content.html_safe %>
+      </p>
+      <%= image_tag(post.attachment.url(:small)) %>
+    </div>
+    <div class="card-footer text-muted">
+      <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
     </div>
   </div>
 </div>
