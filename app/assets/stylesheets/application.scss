@@ -48,18 +48,6 @@
    font-size: 3vh;
  }
 
- #div-tab {
-   position: fixed;
-   top: 30%;
-   font-size: 3vh;
-   padding: 0.5%;
-   padding-left: 2%;
-   img {
-     max-height: 100%;
-     max-width: 100%;
-   }
- }
-
  #tfl-widget {
    font-size: 2.5vh;
  }
@@ -117,9 +105,17 @@
  }
 
  .post {
-   top: 4vh;
-   width: 70vw;
+   width: 60vw;
    height: 60vh;
+   position: absolute;
+ }
+
+ .top {
+   z-index: 2;
+ }
+
+ .bottom {
+   z-index: 1;
  }
 
  .content-canvas {
@@ -146,6 +142,19 @@
 }
 
 .spacer { margin:0; padding:0; height:50px; }
+
+ .tab {
+   position: fixed;
+   top: 30%;
+   width: 13vw;
+   font-size: 3vh;
+   padding: 0.5%;
+   padding-left: 2%;
+   img {
+     max-height: 5vh;
+     max-width: 5vh;
+   }
+ }
 
 
  //----- TFL Lines ---- //
