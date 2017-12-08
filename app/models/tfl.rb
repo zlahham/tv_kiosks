@@ -18,7 +18,7 @@ class TFL
     end
 
     def bad_service?(line)
-      line['lineStatuses'][0]['statusSeverity'] < 11
+      line['lineStatuses'][0]['statusSeverity'] < 10
     end
 
     def line_name(line)
