@@ -134,10 +134,8 @@
 
  .vertical-divider {
    background-color: $divider-color;
-   height: ($footer-height - $divider-thickness);
-   left: (100% - $divider-thickness) / 2;
-   position: absolute;
-   width: $divider-thickness;
+   // height: ($footer-height - $divider-thickness);
+   left: 25%;
  }
 
 //Visually removes weird p tags
