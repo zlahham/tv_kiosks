@@ -19,38 +19,6 @@
    overflow: hidden;
  }
 
- .card-header {
-  font-size: 3vh;
- }
-
- .card-title {
-   font-size: 2.5vh;
- }
-
- .card-text {
-  font-size: 2vh;
- }
-
- .fixed-bar {
-   background-color: $white;
- }
-
- .carousel-indicators {
-   position: absolute;
-   bottom: -2vh;
-   li {
-     background-color: darkgray;
-   }
-   .active {
-     background-color: #2E2F30;
-   }
- }
-
- .vertical-divider {
-   min-height: 100%;
-   border-right: 0.1vh solid black;
- }
-
  #footer {
    border-color: black;
    border-top: 0.1vh solid;
@@ -115,6 +83,39 @@
    align-items: center;
  }
 
+ .card-header {
+  font-size: 3vh;
+ }
+
+ .card-title {
+   font-size: 2.5vh;
+ }
+
+ .card-text {
+  font-size: 2vh;
+ }
+
+ .fixed-bar {
+   background-color: $white;
+ }
+
+ .carousel-indicators {
+   position: absolute;
+   bottom: -2vh;
+   li {
+     background-color: darkgray;
+   }
+   .active {
+     background-color: #2E2F30;
+   }
+ }
+
+ .vertical-divider {
+   min-height: 100%;
+   border-right: 0.1vh solid black;
+   left: 33.3333%;
+ }
+
  .post {
    top: 4vh;
    width: 70vw;
@@ -132,13 +133,7 @@
    text-align: center;
  }
 
- .vertical-divider {
-   background-color: $divider-color;
-   // height: ($footer-height - $divider-thickness);
-   left: 25%;
- }
-
-//Visually removes weird p tags
+ //Visually removes weird p tags
 //TODO Better solution?
 .notice, .alert {
  margin: 0;
@@ -150,12 +145,55 @@
 .spacer { margin:0; padding:0; height:50px; }
 
 
-//----- TFL Lines ---- //
+ //----- TFL Lines ---- //
 
- .Circle {
-   color: #caca00;
- }
+#tfl-indicator {
+  min-height: 100%;
+  left: 0%;
+  border-right: 6vw;
+  border-right-style: solid;
+}
 
- .Victoria {
-   color: blue;
- }
+.Bakerloo {
+ color: #B36305;
+}
+
+.Central {
+ color: #E32017;
+}
+
+.Circle {
+ color: #FFD300;
+}
+
+.District {
+ color: #00782A;
+}
+
+.Hammersmith {
+ color: #F3A9BB;
+}
+
+.Jubilee {
+ color: #A0A5A9;
+}
+
+.Metropolitan {
+ color: #9B0056;
+}
+
+.Northern {
+ color: black;
+}
+
+.Piccadilly {
+ color: #003688;
+}
+
+.Victoria {
+ color: blue;
+}
+
+.Waterloo {
+  color: #95CDBA;
+}

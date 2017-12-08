@@ -16,20 +16,40 @@
   <% end %>
 </div>
 
-<div id="div-center">
 
-  <div class="card post border-info mb-3">
-    <div class="card-header text-center">
-      <%= post.title %>
+<div id="div-center" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner" role="listbox">
+    <div class="card border-info carousel-item active">
+      <div class="card-header text-center">
+        <%= post.title %>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <%= post.content.html_safe %>
+        </p>
+        <%= image_tag(post.attachment.url(:small)) %>
+      </div>
+      <div class="card-footer text-muted">
+        <% unless post.date.nil? %>
+          <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
+        <% end %>
+      </div>
     </div>
-    <div class="card-body">
-      <p class="card-text">
-      <%= post.content.html_safe %>
-      </p>
-      <%= image_tag(post.attachment.url(:small)) %>
-    </div>
-    <div class="card-footer text-muted">
-      <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
+    <div class="card border-info  carousel-item">
+      <div class="card-header text-center">
+        <%= post.title %>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <%= post.content.html_safe %>
+        </p>
+        <%= image_tag(post.attachment.url(:small)) %>
+      </div>
+      <div class="card-footer text-muted">
+        <% unless post.date.nil? %>
+          <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
@@ -49,34 +69,25 @@
 </div>
 
 <div id="footer" class="fixed-bottom fixed-bar row text-center">
-  <div id="tfl-widget" class="carousel slide col-md-3 align-self-center" data-ride="carousel">
+  <div id="tfl-indicator"></div>
+  <div id="tfl-widget" class="carousel slide col-md-4 align-self-center" data-ride="carousel">
     <div class="carousel-inner">
       <% if TFL.no_disruptions? %>
         <div class="carousel-item active">
           Good service on all lines.
         </div>
       <% else %>
-        <% first_disruption = TFL.disrupted_lines[0] %>
-        <div class="carousel-item active <%= TFL.line_name(first_disruption) %>">
-          <%= TFL.line_name(first_disruption) %> Line: <%= TFL.line_status(first_disruption) %>
-        </div>
         <% TFL.disrupted_lines.each_with_index do |line, index| %>
-          <% unless index == 0 %>
-            <div class="carousel-item <%= TFL.line_name(line) %>">
-              <%= TFL.line_name(line) %> Line: <%= TFL.line_status(line) %>
-            </div>
-          <% end %>
+          <div class="carousel-item <%= index == 0 ? 'active' : ''%>">
+            <%= TFL.line_name(line) %> Line: <%= TFL.line_status(line) %>
+          </div>
         <% end %>
       <% end %>
     </div>
     <ol class="carousel-indicators">
       <% if TFL.disrupted_lines.length > 1 %>
         <% TFL.disrupted_lines.each_with_index do |line, index| %>
-          <% if index == 0 %>
-            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-          <% else %>
-            <li data-target="#carouselIndicators" data-slide-to="<% index %>"></li>
-          <% end %>
+          <li data-target="#carouselIndicators" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : ''%>" ></li>
         <% end %>
       <% end %>
     </ol>

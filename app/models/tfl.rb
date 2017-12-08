@@ -7,12 +7,10 @@ class TFL
     @@response = HTTParty.get(URL).parsed_response
 
     def disrupted_lines
-      @@disrupted_lines = []
-      @@response.each do |line|
+      @@response.each_with_object([]) do |line, acc|
         next unless bad_service?(line)
-        @@disrupted_lines << line
+        acc << line
       end
-      return @@disrupted_lines
     end
 
     def no_disruptions?
@@ -20,7 +18,7 @@ class TFL
     end
 
     def bad_service?(line)
-      line['lineStatuses'][0]['statusSeverity'] < 10
+      line['lineStatuses'][0]['statusSeverity'] < 11
     end
 
     def line_name(line)
