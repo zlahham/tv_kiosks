@@ -28,5 +28,9 @@ class TFL
     def line_status(line)
       line['lineStatuses'][0]['statusSeverityDescription']
     end
+
+    def line_status_id(line)
+      line['lineStatuses'][0]['statusSeverity']
+    end
   end
 end
