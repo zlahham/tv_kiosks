@@ -5,21 +5,18 @@ class TFL
 
   class << self
     @@response = HTTParty.get(URL).parsed_response
-    @@disruptions = {}
 
-    def disruptions
+    def disrupted_lines
+      @@disrupted_lines = []
       @@response.each do |line|
         next unless bad_service?(line)
-        @@disruptions[line['id']] = "#{line_name(line)} Line: #{line_status(line)}"
+        @@disrupted_lines << line
       end
-
-      @@disruptions.each.inject([]) do |acc, (_key, value)|
-        acc << value
-      end
+      return @@disrupted_lines
     end
 
     def no_disruptions?
-      disruptions.blank?
+      disrupted_lines.blank?
     end
 
     def bad_service?(line)
