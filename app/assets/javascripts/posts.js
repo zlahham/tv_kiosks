@@ -1,39 +1,58 @@
-var zIndexCounterStart = 0;
+var mainIndex = 0;
+var prevMainIndex = 0;
 
-function switchPosts() {
-    var posts = $(".post");
-    var tabs = $(".tab");
-    var numberOfPosts = posts.length;
-    var zIndex = zIndexCounterStart;
+    function switchPosts() {
+        var posts = $(".post");
+        var tabs = $(".tab");
+        var numberOfPosts = posts.length - 1;
+        var transitionTime = 1000;
 
-    posts.each(function(){
-        if (zIndex >= numberOfPosts - 1) {
-            zIndex = 0;
+        $($(posts).get(mainIndex)).css("z-index", 1);
+        $($(posts).get(prevMainIndex)).css("z-index", 0);
+
+        $($(posts).get(mainIndex)).fadeIn(transitionTime);
+        $($(tabs).get(mainIndex)).fadeIn(transitionTime);
+
+        setTimeout(function(){
+            $($(posts).get(prevMainIndex - 1)).hide();
+            $($(tabs).get(prevMainIndex - 1)).hide();
+        }, transitionTime);
+
+        /*
+        posts.each(function () {
+            $(this).css("z-index", postIndex);
+            if (postIndex >= numberOfPosts) {
+                postIndex = 0;
+            } else {
+                postIndex++;
+            }
+
+        });
+
+        tabs.each(function () {
+            if (tabIndex >= numberOfPosts) {
+                tabIndex = 0;
+            } else {
+                tabIndex++;
+            }
+            $(this).css("z-index", tabIndex);
+        });
+
+
+        */
+
+        if (mainIndex >= numberOfPosts) {
+            mainIndex = 0;
+            prevMainIndex = numberOfPosts;
         } else {
-            zIndex++;
+            prevMainIndex = mainIndex;
+            mainIndex++;
         }
-        $(this).css("z-index", zIndex);
-    });
-
-    tabs.each(function(){
-        if (zIndex >= numberOfPosts - 1) {
-            zIndex = 0;
-        } else {
-            zIndex++;
-        }
-       $(this).css("z-index", zIndex);
-    });
-
-
-    if (zIndexCounterStart >= numberOfPosts) {
-        zIndexCounterStart = 0;
-    } else {
-        zIndexCounterStart++;
     }
-}
+
 
 $(document).ready(function() {
     window.setInterval(function(){
-        switchPosts();
-    }, 1000)
+        //switchPosts();
+    }, 2000)
 });
