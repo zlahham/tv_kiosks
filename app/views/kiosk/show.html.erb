@@ -1,39 +1,43 @@
-<% post = Post.last %>
-<div id="div-tab">
-  <% if post.category == "news" %>
-    <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
-      <div class="card-body">
-        <%= fa_icon("rss", text: 'News') %>
+<% Post.all.each do |post| %>
+  <div class="tab">
+    <% if post.category == "news" %>
+      <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
+        <div class="card-body">
+          <%= fa_icon("rss", text: 'News') %>
+        </div>
       </div>
-    </div>
 
-  <% elsif post.category == "event" %>
-    <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
+    <% elsif post.category == "event" %>
+      <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
+        <div class="card-body">
+          <%= fa_icon("calendar", text: 'Event') %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div id="div-center">
+  <% Post.all.each do |post| %>
+    <div class="card border-info post mt-3">
+      <div class="card-header text-center">
+        <%= post.title %>
+      </div>
       <div class="card-body">
-        <%= fa_icon("calendar", text: 'Event') %>
+        <p class="card-text">
+          <%= post.content.html_safe %>
+        </p>
+        <%= image_tag(post.attachment.url(:small)) %>
+      </div>
+      <div class="card-footer text-muted">
+        <% unless post.date.nil? %>
+          <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
+        <% end %>
       </div>
     </div>
   <% end %>
 </div>
 
-
-<div id="div-center">
-
-  <div class="card border-info mb-3 post">
-    <div class="card-header text-center">
-      <%= post.title %>
-    </div>
-    <div class="card-body">
-      <p class="card-text">
-        <%= post.content.html_safe %>
-      </p>
-      <%= image_tag(post.attachment.url(:small)) %>
-    </div>
-    <div class="card-footer text-muted">
-      <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
-    </div>
-  </div>
-</div>
 
 <div id="header" class="fixed-top fixed-bar row text-center">
   <div id="div-time" class="align-self-center col-md-3"> </div>
