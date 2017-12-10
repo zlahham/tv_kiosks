@@ -10,8 +10,8 @@ var prevMainIndex = 0;
         $($(posts).get(mainIndex)).css("z-index", 1);
         $($(posts).get(prevMainIndex)).css("z-index", 0);
 
-        $($(posts).get(mainIndex)).fadeIn(transitionTime);
-        $($(tabs).get(mainIndex)).fadeIn(transitionTime);
+        $($(posts).get(mainIndex)).fadeIn(transitionTime).css("display","flex");
+        $($(tabs).get(mainIndex)).fadeIn(transitionTime).css("display","flex");
 
         setTimeout(function(){
             $($(posts).get(prevMainIndex - 1)).hide();
@@ -53,6 +53,6 @@ var prevMainIndex = 0;
 
 $(document).ready(function() {
     window.setInterval(function(){
-        //switchPosts();
+        switchPosts();
     }, 2000)
 });
