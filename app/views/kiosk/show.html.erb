@@ -25,9 +25,11 @@
       </div>
       <div class="card-body">
         <p class="card-text">
-          <%= post.content.html_safe %>
+        <%= post.content.html_safe %>
         </p>
-        <%= image_tag(post.attachment.url(:small)) %>
+        <% if post.attachment.exists? %>
+          <%= image_tag(post.attachment.url(:small)) %>
+        <% end %>
       </div>
       <div class="card-footer text-muted">
         <% unless post.date.nil? %>
