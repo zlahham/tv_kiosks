@@ -59,7 +59,7 @@
         </div>
       <% else %>
         <% TFL.disrupted_lines.each_with_index do |line, index| %>
-          <div class="carousel-item <%= index == 0 ? 'active' : ''%>">
+          <div class="carousel-item <%= index == 0 ? 'active' : ''%> <%= TFL.line_status_id(line) < 8 ? 'severe-delay' : '' %>">
             <%= TFL.line_name(line) %> Line: <%= TFL.line_status(line) %>
           </div>
         <% end %>
