@@ -17,7 +17,7 @@
   </div>
 <% end %>
 
-<div id="div-center">
+<div id="div-center" class="<%= @department %>">
   <% Post.all.each do |post| %>
     <div class="card border-info post mt-3">
       <div class="card-header text-center">

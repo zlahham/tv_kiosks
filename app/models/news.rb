@@ -24,10 +24,9 @@ class News
 
   def self.news_list(news_feed)
     case news_feed
-    when 'bbc_feed'
-      articles = @@bbc
-    when 'engineering_feed'
-      articles = @@engineering
+      when 'engineering_feed' then articles = @@engineering
+      else
+        articles = @@bbc
     end
 
     title_delimiter = "\u2014"

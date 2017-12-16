@@ -62,7 +62,6 @@
  }
 
  #div-center {
-   background: $white url(asset-path('background.png')) no-repeat center center fixed;
    height: auto !important; //Cause footer to stick to bottom in IE 6 */
    min-height: 100%;
    display:flex;
@@ -156,9 +155,46 @@
      max-width: 5vh;
    }
  }
+ 
+ //----- UCL departments -----//
+ .biochem {
+   background: #0097A9;
+ }
+ 
+ .chemeng {
+   background: #8F993E;
+ }
+ .civil {
+   background: #EA7600;
+ }
+ .compsci {
+   background: #8DB9CA;
+ }
+ .eleceng {
+   background: #B5BD00;
+ }
+ .mecheng {
+   background: #500778;
+ }
+ .medphys {
+   background: #002855;
+ } 
+ .stepp {
+   background: #AC145A;
+ }
+ .crimesci {
+   background: #F6BE00;
+ }
+ .management {
+   background: #003D4C;
+ }
+
+ .no_department {
+   background: $white url(asset-path('background.png')) no-repeat center center fixed;
+ }
 
 
- //----- TFL Lines ---- //
+ //----- TFL Lines -----//
 
 #tfl-indicator {
   min-height: 100%;
