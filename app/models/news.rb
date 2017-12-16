@@ -23,11 +23,11 @@ class News
                     content_field_name: 'content' }
 
   def self.news_list(news_feed)
-    case news_feed
-      when 'engineering_feed' then articles = @@engineering
+    articles = case news_feed
+      when 'engineering_feed' then @@engineering
       else
-        articles = @@bbc
-    end
+        @@bbc
+               end
 
     title_delimiter = "\u2014"
 
