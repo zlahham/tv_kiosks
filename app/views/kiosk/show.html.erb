@@ -19,7 +19,7 @@
 
 <div id="div-center">
   <% Post.all.each do |post| %>
-    <div class="card border-info post mt-3">
+    <div class="card border-info post mt-3" duration="<%= post.duration %>">
       <div class="card-header text-center">
         <%= post.title %>
       </div>
