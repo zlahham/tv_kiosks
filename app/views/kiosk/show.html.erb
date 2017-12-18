@@ -1,3 +1,17 @@
+<div id="header" class="fixed-top fixed-bar row text-center">
+  <div id="div-time" class="align-self-center col-md-3"> </div>
+  <div class="align-self-center text-left col-md-2">
+    <div id="div-weather">
+      <%= Weather.temperature %>°C <%= Weather.weather_icon %>
+    </div>
+    <div id="div-date"> </div>
+  </div>
+  <div class="offset-md-4"> </div>
+  <div class="align-self-end col-md-3">
+    <%= image_tag(@ucl_logo, id: "ucl-logo") %>
+  </div>
+</div>
+
 <% Post.all.each do |post| %>
   <div class="tab">
     <% if post.category == "news" %>
@@ -38,21 +52,6 @@
       </div>
     </div>
   <% end %>
-</div>
-
-
-<div id="header" class="fixed-top fixed-bar row text-center">
-  <div id="div-time" class="align-self-center col-md-3"> </div>
-  <div class="align-self-center text-left col-md-2">
-    <div id="div-weather">
-      <%= Weather.temperature %>°C <%= Weather.weather_icon %>
-    </div>
-    <div id="div-date"> </div>
-  </div>
-  <div class="offset-md-4"> </div>
-  <div class="align-self-end col-md-3">
-    <%= image_tag(@ucl_logo, id: "ucl-logo") %>
-  </div>
 </div>
 
 <div id="footer" class="fixed-bottom row text-center">
