@@ -5,11 +5,8 @@
  $white: #fff;
  $background-color: #0ff;
  $divider-color: #888;
- $content-canvas-background-color: rgba(255,255,255,0.5);
 
- $header-height: 15%;
  $footer-height: 8%;
- $content-canvas-width: 66%;
 
  $divider-thickness: 0.1%;
 
@@ -23,6 +20,7 @@
    border-color: black;
    border-top: 0.1vh solid;
    height: $footer-height;
+   background-color: white;
  }
 
  #ucl-logo {
@@ -30,12 +28,11 @@
  }
 
  #header {
-   @extend .fixed-bar;
-   height: $header-height;
+   background-color: white;
  }
 
  #div-time {
-   font-size: 12vh;
+   font-size: 11vh;
    font-weight: 800;
  }
 
@@ -62,7 +59,6 @@
  }
 
  #div-center {
-   background: $white url(asset-path('background.png')) no-repeat center center fixed;
    height: auto !important; //Cause footer to stick to bottom in IE 6 */
    min-height: 100%;
    display:flex;
@@ -81,10 +77,6 @@
 
  .card-text {
   font-size: 2vh;
- }
-
- .fixed-bar {
-   background-color: $white;
  }
 
  .carousel-indicators {
@@ -119,13 +111,6 @@
    z-index: 1;
  }
 
- .content-canvas {
-   background-color: $content-canvas-background-color;
-   width: $content-canvas-width;
-   flex-grow: 0.7;
-   padding: 5%;
- }
-
  .footer-widget {
    text-align: center;
  }
@@ -156,9 +141,46 @@
      max-width: 5vh;
    }
  }
+ 
+ //----- UCL departments -----//
+ .biochem {
+   background: #0097A9;
+ }
+ 
+ .chemeng {
+   background: #8F993E;
+ }
+ .civil {
+   background: #EA7600;
+ }
+ .compsci {
+   background: #8DB9CA;
+ }
+ .eleceng {
+   background: #B5BD00;
+ }
+ .mecheng {
+   background: #500778;
+ }
+ .medphys {
+   background: #002855;
+ } 
+ .stepp {
+   background: #AC145A;
+ }
+ .crimesci {
+   background: #F6BE00;
+ }
+ .management {
+   background: #003D4C;
+ }
+
+ .no_department {
+   background: $white url(asset-path('background.png')) no-repeat center center fixed;
+ }
 
 
- //----- TFL Lines ---- //
+ //----- TFL Lines -----//
 
 #tfl-indicator {
   min-height: 100%;

@@ -84,6 +84,9 @@
                     }
                 };
 
+            // Settings
+            o.duplicated = false;
+
             // Check for methods
             if (typeof options === 'string') {
                 if ($.isFunction(methods[options])) {
