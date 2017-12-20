@@ -9,4 +9,10 @@ class ApplicationController < ActionController::Base
       format.js   { head :forbidden, content_type: 'text/html' }
     end
   end
+
+  rescue_from SocketError do
+    respond_to do |format|
+      format.html { render file: "#{Rails.root}/public/500", layout: false, status: :error }
+    end
+  end
 end
