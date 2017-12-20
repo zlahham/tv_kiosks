@@ -19,6 +19,7 @@
 //= require_tree .
 
 $(function() {
-
-
+  setTimeout(function() {
+      location.reload();
+  }, 1800000);
 });
