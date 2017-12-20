@@ -5,11 +5,8 @@
  $white: #fff;
  $background-color: #0ff;
  $divider-color: #888;
- $content-canvas-background-color: rgba(255,255,255,0.5);
 
- $header-height: 15%;
  $footer-height: 8%;
- $content-canvas-width: 66%;
 
  $divider-thickness: 0.1%;
 
@@ -23,6 +20,7 @@
    border-color: black;
    border-top: 0.1vh solid;
    height: $footer-height;
+   background-color: white;
  }
 
  #ucl-logo {
@@ -30,12 +28,11 @@
  }
 
  #header {
-   @extend .fixed-bar;
-   height: $header-height;
+   background-color: white;
  }
 
  #div-time {
-   font-size: 12vh;
+   font-size: 11vh;
    font-weight: 800;
  }
 
@@ -82,10 +79,6 @@
   font-size: 2vh;
  }
 
- .fixed-bar {
-   background-color: $white;
- }
-
  .carousel-indicators {
    position: absolute;
    bottom: -2.5vh;
@@ -116,13 +109,6 @@
 
  .bottom {
    z-index: 1;
- }
-
- .content-canvas {
-   background-color: $content-canvas-background-color;
-   width: $content-canvas-width;
-   flex-grow: 0.7;
-   padding: 5%;
  }
 
  .footer-widget {
