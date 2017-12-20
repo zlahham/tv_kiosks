@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   enum role: %i[admin staff]
 
+  belongs_to :department
   has_many :posts
 
   validates :email, :password, :name, :role, presence: true
@@ -26,7 +27,7 @@ class User < ApplicationRecord
       field :email
       field :role
       field :posts
-      field :last_sign_in_at
+      field :department
     end
   end
 end
