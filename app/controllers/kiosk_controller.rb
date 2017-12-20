@@ -5,7 +5,6 @@ class KioskController < ApplicationController
 
   DEPTS.each do |d|
     define_method(:"#{d.code}") do
-      @ucl_logo = "ucl_logo_#{d.code}.png"
       @department = d.code
       @colour = d.colour
       @news_feed = 'engineering_feed' if ENG_DEPTS.include?(d.code)

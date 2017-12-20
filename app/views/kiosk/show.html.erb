@@ -8,7 +8,11 @@
   </div>
   <div class="offset-md-4"> </div>
   <div class="align-self-end col-md-3">
-    <%= image_tag(@ucl_logo, id: "ucl-logo") %>
+    <% if @department.blank? %>
+      <%= image_tag('ucl_logo', id: "ucl-logo", class: "no_department") %>
+    <% else %>
+      <%= image_tag('ucl_logo', id: "ucl-logo", style: "background: #{@colour}") %>
+    <% end %>
   </div>
 </div>
 
