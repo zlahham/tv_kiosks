@@ -9,16 +9,16 @@
 puts "**  Seeding Database: seeding ***\n\n"
 
 Department.create([
-                    { name: 'Biochemical Engineering', colour: '#0097A9' },
-                    { name: 'Chemical Engineering', colour: '#8F993E' },
-                    { name: 'Civil, Environmental and Geomatic Engineering', colour: '#EA7600' },
-                    { name: 'Computer Science', colour: '#8DB9CA' },
-                    { name: 'Electronic and Electrical Engineering', colour: '#B5BD00' },
-                    { name: 'Mechanical Engineering', colour: '#500778' },
-                    { name: 'Medical Physics and Biomedical Engineering', colour: '#002855' },
-                    { name: 'Science, Technology, Engineering and Public Policy', colour: '#AC145A' },
-                    { name: 'Security and Crime Science', colour: '#F6BE00' },
-                    { name: 'UCL School of Management', colour: '#003D4C' }
+                    { name: 'Biochemical Engineering', colour: '#0097A9', code: 'biochem' },
+                    { name: 'Chemical Engineering', colour: '#8F993E', code: 'chemeng' },
+                    { name: 'Civil, Environmental and Geomatic Engineering', colour: '#EA7600', code: 'civil' },
+                    { name: 'Computer Science', colour: '#8DB9CA', code: 'compsci' },
+                    { name: 'Electronic and Electrical Engineering', colour: '#B5BD00', code: 'eleceng' },
+                    { name: 'Mechanical Engineering', colour: '#500778', code: 'mecheng' },
+                    { name: 'Medical Physics and Biomedical Engineering', colour: '#002855', code: 'medphys' },
+                    { name: 'Science, Technology, Engineering and Public Policy', colour: '#AC145A', code: 'stepp' },
+                    { name: 'Security and Crime Science', colour: '#F6BE00', code: 'crimesci' },
+                    { name: 'UCL School of Management', colour: '#003D4C', code: 'management' }
                   ])
 
 puts "-- Created All the Engineering Departments\n"

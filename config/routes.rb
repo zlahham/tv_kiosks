@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   root to: 'kiosk#show'
 
-  KioskController::DEPTS.each do |d|
+  KioskController::DEPTS.pluck(:code).each do |d|
     get "/#{d}", to: "kiosk\##{d}"
   end
+
+  # match '*path', to: 'kiosk:show', via: :get
 end
