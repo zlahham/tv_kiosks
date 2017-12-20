@@ -19,7 +19,9 @@
 //= require_tree .
 
 $(function() {
+  var refreshRate = 1800000; // In Milliseconds
+
   setTimeout(function() {
       location.reload();
-  }, 1800000);
+  }, refreshRate);
 });
