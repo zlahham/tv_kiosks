@@ -33,7 +33,7 @@
 
 <div id="div-center" class="<%= @department %>">
   <% Post.all.each do |post| %>
-    <div class="card border-info post mt-3">
+    <div class="card border-info post mt-3" duration="<%= post.duration %>">
       <div class="card-header text-center">
         <%= post.title %>
       </div>
@@ -81,7 +81,7 @@
   <div class="vertical-divider"></div>
   <div id="news-feed" class="col align-self-center">
     <div class="marquee">
-      <%= News.news_string(@news_feed) %>
+      <%= News.news_string(@news_feed) *4 %>
     </div>
   </div>
 </div>

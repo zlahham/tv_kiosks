@@ -8,9 +8,8 @@ class News
   bbc_news_hash = bbc_response.parsed_response
   bbc_articles = bbc_news_hash['articles']
 
-  ENG_URL = 'https://api.rss2json.com/v1/api.json?'\
-    'rss_url=http%3A%2F%2Fwww.engineering.ucl.ac.uk'\
-    '%2Fnews-articles%2Ffeed%2F'.freeze
+  ENG_URL = 'https://api.rss2json.com/v1/api.json?' \
+            'rss_url=http%3A%2F%2Fwww.engineering.ucl.ac.uk%2Fnews-articles%2Ffeed%2F'.freeze
   eng_response = HTTParty.get(ENG_URL)
   eng_news_hash = eng_response.parsed_response
   eng_articles = eng_news_hash['items']
@@ -35,19 +34,17 @@ class News
     articles[:articles].each do |article|
       title   = strip_tags(article[articles[:title_field_name].to_s])
       content = strip_tags(article[articles[:content_field_name].to_s])
-      news_list << "#{title}#{title_delimiter}#{content}"
+      news_item = "#{title}"
+      news_item += " #{title_delimiter} #{content}" if news_feed == 'bbc_feed'
+      news_list << news_item
     end
     news_list
   end
 
   def self.news_string(news_feed)
-    item_delimiter = "\u2001" * 10
+    item_delimiter = "\u2001" * 2 + '+' * 3 + "\u2001" * 2
     news_list(news_feed).each_with_index.inject('') do |acc, (item, index)|
-      acc << if index < (news_list(news_feed).size - 1)
-               "#{item}#{item_delimiter}"
-             else
-               item.to_s
-             end
+      acc << "#{item}#{item_delimiter}"
     end
   end
 end
