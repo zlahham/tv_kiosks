@@ -12,24 +12,26 @@
   </div>
 </div>
 
-<% Post.all.each do |post| %>
-  <div class="tab">
-    <% if post.category == "news" %>
-      <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
-        <div class="card-body">
-          <%= fa_icon("rss", text: 'News') %>
+<div id="category">
+  <% Post.all.each do |post| %>
+    <div class="tab">
+      <% if post.category == "news" %>
+        <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
+          <div class="card-body">
+            <%= fa_icon("rss", text: 'News') %>
+          </div>
         </div>
-      </div>
 
-    <% elsif post.category == "event" %>
-      <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
-        <div class="card-body">
-          <%= fa_icon("calendar", text: 'Event') %>
+      <% elsif post.category == "event" %>
+        <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
+          <div class="card-body">
+            <%= fa_icon("calendar", text: 'Event') %>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
 <div id="div-center" class="<%= @department %>">
   <% Post.all.each do |post| %>
@@ -38,9 +40,7 @@
         <%= post.title %>
       </div>
       <div class="card-body">
-        <p class="card-text">
-        <%= post.content.html_safe %>
-        </p>
+        <p class="card-text"><%= post.content.html_safe %></p>
         <% if post.attachment.exists? %>
           <%= image_tag(post.attachment.url(:small)) %>
         <% end %>

@@ -7,28 +7,23 @@ class Post < ApplicationRecord
   enum category: %i[event news]
 
   has_attached_file :attachment,
-                    styles: {
-                      small: '100x100>',
-                      medium: '300x300>',
-                      thumb: '100x100>'
-                    },
+                    styles: { small: '100x100>',
+                              medium: '300x300>',
+                              thumb: '100x100>' },
                     default_url: ''
 
   validates :title, :content, :category, :duration, :expires_on, presence: true
   validates :duration, inclusion: { in: MIN_DURATION..MAX_DURATION }
   validate :expiry_cannot_be_in_past, on: %i[create update]
+
   validates_attachment :attachment, content_type: { content_type: ['image/jpeg', 'image/gif', 'image/png'] }
   validates_attachment :attachment, file_name: { matches: [/png\z/, /jpe?g\z/] }
 
   before_validation { attachment.clear if delete_attachment == '1' }
 
-  def expiry_cannot_be_in_past
-    errors.add(:expires_on, ' cannot be in the past!') if expires_on < Time.now
-  end
+  after_create :publish
 
   rails_admin do
-    # parent User
-
     edit do
       group :default do
         label 'Post information'
@@ -76,6 +71,16 @@ class Post < ApplicationRecord
     object_label_method do
       :post_label_method
     end
+  end
+
+  private
+
+  def publish
+    ActionCable.server.broadcast('room_channel', post: self)
+  end
+
+  def expiry_cannot_be_in_past
+    errors.add(:expires_on, ' cannot be in the past!') if expires_on < Time.now
   end
 
   def post_label_method
