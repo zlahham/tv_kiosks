@@ -13,10 +13,14 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
 
       if (data.post.category == 'news') {
         $('#category').append('<div class="tab">' + '<div class="card text-black bg-light mb-3" style="max-width: 20rem;">' + '<div class="card-body">' + '<i class="fa fa-rss"></i> News' + '</div>' + '</div>' + '</div>');
-      } else {
+        $('#div-center').append('<div class="card border-info post mt-3" duration="' + data.post.duration + '">' + '<div class="card-header text-center">' + data.post.title + '</div>' + '<div class="card-body">' + '<p class="card-text">' + data.post.content + '</p>' +  '</div>' + '<div class="card-footer text-muted">' + data.post.date + '</div>' + '</div>');
+      } else if (data.post.category == 'event') {
         $('#category').append('<div class="tab">' + '<div class="card text-black bg-light mb-3" style="max-width: 20rem;">' + '<div class="card-body">' + '<i class="fa fa-calendar"></i> Event' + '</div>' + '</div>' + '</div>');
+        $('#div-center').append('<div class="card border-info post mt-3" duration="' + data.post.duration + '">' + '<div class="card-header text-center">' + data.post.title + '</div>' + '<div class="card-body">' + '<p class="card-text">' + data.post.content + '</p>' +  '</div>' + '<div class="card-footer text-muted">' + data.post.date + '</div>' + '</div>');
+      } else if (data.post.category == 'emergency') {
+        $('#category').empty();
+        $('#div-center').empty();
       }
-      $('#div-center').append('<div class="card border-info post mt-3" duration="' + data.post.duration + '">' + '<div class="card-header text-center">' + data.post.title + '</div>' + '<div class="card-body">' + '<p class="card-text">' + data.post.content + '</p>' +  '</div>' + '<div class="card-footer text-muted">' + data.post.date + '</div>' + '</div>');
     }
   }
 });

@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   MAX_DURATION = 30
 
   belongs_to :user
-  enum category: %i[event news]
+  enum category: %i[event news emergency]
 
   has_attached_file :attachment,
                     styles: { small: '100x100>',
