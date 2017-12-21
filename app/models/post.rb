@@ -21,7 +21,11 @@ class Post < ApplicationRecord
 
   before_validation { attachment.clear if delete_attachment == '1' }
 
-  after_create :publish
+  after_commit :publish
+  after_destroy :publish
+
+  scope :valid, -> { where('expires_on >= ?', Time.now) }
+  scope :with_emergencies, -> { where(category: 'emergency') }
 
   rails_admin do
     edit do
