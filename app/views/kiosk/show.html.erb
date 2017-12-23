@@ -12,76 +12,109 @@
   </div>
 </div>
 
-<% Post.all.each do |post| %>
-  <div class="tab">
-    <% if post.category == "news" %>
-      <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
+<div id="category">
+  <% if Post.valid.with_emergencies.exists? %>
+    <div class="tab">
+      <div class="card text-danger border-danger bg-light mb-3" style="max-width: 20rem;">
         <div class="card-body">
-          <%= fa_icon("rss", text: 'News') %>
+          <%= fa_icon("exclamation-triangle", text: 'Emergency') %>
         </div>
-      </div>
-
-    <% elsif post.category == "event" %>
-      <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
-        <div class="card-body">
-          <%= fa_icon("calendar", text: 'Event') %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-<% end %>
-
-<div id="div-center" class="<%= @department %>">
-  <% Post.all.each do |post| %>
-    <div class="card border-info post mt-3" duration="<%= post.duration %>">
-      <div class="card-header text-center">
-        <%= post.title %>
-      </div>
-      <div class="card-body">
-        <p class="card-text">
-        <%= post.content.html_safe %>
-        </p>
-        <% if post.attachment.exists? %>
-          <%= image_tag(post.attachment.url(:small)) %>
-        <% end %>
-      </div>
-      <div class="card-footer text-muted">
-        <% unless post.date.nil? %>
-          <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
-        <% end %>
       </div>
     </div>
+
+  <% else %>
+    <% Post.valid.each do |post| %>
+      <div class="tab">
+        <% if post.category == "news" %>
+          <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
+            <div class="card-body">
+              <%= fa_icon("rss", text: 'News') %>
+            </div>
+          </div>
+
+        <% elsif post.category == "event" %>
+          <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
+            <div class="card-body">
+              <%= fa_icon("calendar", text: 'Event') %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
-<div id="footer" class="fixed-bottom row text-center">
-  <div id="tfl-indicator"></div>
-  <div id="tfl-widget" class="carousel slide col-md-4 align-self-center" data-ride="carousel">
-    <div class="carousel-inner">
-      <% if TFL.no_disruptions? %>
-        <div class="carousel-item active">
-          Good service on all lines.
+<div id="div-center" class="<%= @department %>">
+  <% if Post.valid.with_emergencies.exists? %>
+    <% post = Post.valid.with_emergencies.last %>
+      <div class="card text-danger border-danger emergency mt-3" duration="100" style="z-index: 10; display: flex;">
+        <div class="card-header text-center">
+          <%= post.title %>
         </div>
-      <% else %>
-        <% TFL.disrupted_lines.each_with_index do |line, index| %>
-          <div class="carousel-item <%= index == 0 ? 'active' : ''%> <%= TFL.line_status_id(line) < 8 ? 'severe-delay' : '' %>">
-            <%= TFL.line_name(line) %> Line: <%= TFL.line_status(line) %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-    <ol class="carousel-indicators">
-      <% if TFL.disrupted_lines.length > 1 %>
-        <% TFL.disrupted_lines.each_with_index do |line, index| %>
-          <li data-target="#carouselIndicators" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : ''%>" ></li>
-        <% end %>
-      <% end %>
-    </ol>
-  </div>
-  <div class="vertical-divider"></div>
-  <div id="news-feed" class="col align-self-center">
-    <div class="marquee">
-      <%= News.news_string(@news_feed) *4 %>
-    </div>
-  </div>
+        <div class="card-body">
+          <p class="card-text text-danger"><%= post.content.html_safe %></p>
+          <% if post.attachment.exists? %>
+            <%= image_tag(post.attachment.url(:small)) %>
+          <% end %>
+        </div>
+        <div class="card-footer text-muted">
+          <% unless post.date.nil? %>
+            <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
+          <% end %>
+        </div>
+      </div>
+  <% else %>
+    <% Post.valid.each do |post| %>
+      <div class="card border-info post mt-3" duration="<%= post.duration %>">
+        <div class="card-header text-center">
+          <%= post.title %>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= post.content.html_safe %></p>
+          <% if post.attachment.exists? %>
+            <%= image_tag(post.attachment.url(:small)) %>
+          <% end %>
+        </div>
+        <div class="card-footer text-muted">
+          <% unless post.date.nil? %>
+            <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>
+
+<% unless Post.valid.with_emergencies.exists? %>
+  <div id="footer" class="fixed-bottom row text-center">
+    <div id="tfl-indicator"></div>
+    <div id="tfl-widget" class="carousel slide col-md-4 align-self-center" data-ride="carousel">
+      <div class="carousel-inner">
+        <% if TFL.no_disruptions? %>
+          <div class="carousel-item active">
+            Good service on all lines.
+          </div>
+        <% else %>
+          <% TFL.disrupted_lines.each_with_index do |line, index| %>
+            <div class="carousel-item <%= index == 0 ? 'active' : ''%> <%= TFL.line_status_id(line) < 8 ? 'severe-delay' : '' %>">
+              <%= TFL.line_name(line) %> Line: <%= TFL.line_status(line) %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <ol class="carousel-indicators">
+        <% if TFL.disrupted_lines.length > 1 %>
+          <% TFL.disrupted_lines.each_with_index do |line, index| %>
+            <li data-target="#carouselIndicators" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : ''%>" ></li>
+          <% end %>
+        <% end %>
+      </ol>
+    </div>
+    <div class="vertical-divider"></div>
+    <div id="news-feed" class="col align-self-center">
+      <div class="marquee">
+        <%= News.news_string(@news_feed) *4 %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   KioskController::DEPTS.each do |d|
     get "/#{d}", to: "kiosk\##{d}"
   end
+
+  mount ActionCable.server, at: '/cable'
 end
