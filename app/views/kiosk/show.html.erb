@@ -8,7 +8,11 @@
   </div>
   <div class="offset-md-4"> </div>
   <div class="align-self-end col-md-3">
-    <%= image_tag(@ucl_logo, id: "ucl-logo") %>
+    <% if @department.blank? %>
+      <%= image_tag('ucl_logo', id: "ucl-logo", class: "no_department") %>
+    <% else %>
+      <%= image_tag('ucl_logo', id: "ucl-logo", style: "background: #{@colour}") %>
+    <% end %>
   </div>
 </div>
 
@@ -44,46 +48,51 @@
   <% end %>
 </div>
 
-<div id="div-center" class="<%= @department %>">
-  <% if Post.valid.with_emergencies.exists? %>
-    <% post = Post.valid.with_emergencies.last %>
-      <div class="card text-danger border-danger emergency mt-3" duration="100" style="z-index: 10; display: flex;">
-        <div class="card-header text-center">
-          <%= post.title %>
-        </div>
-        <div class="card-body">
-          <p class="card-text text-danger"><%= post.content.html_safe %></p>
-          <% if post.attachment.exists? %>
-            <%= image_tag(post.attachment.url(:small)) %>
-          <% end %>
-        </div>
-        <div class="card-footer text-muted">
-          <% unless post.date.nil? %>
-            <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
-          <% end %>
-        </div>
+<% if @department.blank? %>
+  <div id="div-center" class="no_department">
+<% else %>
+  <div id="div-center" style="background: <%= @colour %>">
+<% end %>
+<% if Post.valid.with_emergencies.exists? %>
+  <% post = Post.valid.with_emergencies.last %>
+  <div class="card text-danger border-danger emergency mt-3" duration="100" style="z-index: 10; display: flex;">
+    <div class="card-header text-center">
+      <%= post.title %>
+    </div>
+    <div class="card-body">
+      <p class="card-text text-danger"><%= post.content.html_safe %></p>
+      <% if post.attachment.exists? %>
+        <%= image_tag(post.attachment.url(:small)) %>
+      <% end %>
+    </div>
+    <div class="card-footer text-muted">
+      <% unless post.date.nil? %>
+        <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <% Post.valid.each do |post| %>
+    <div class="card border-info post mt-3" duration="<%= post.duration %>">
+      <div class="card-header text-center">
+        <%= post.title %>
       </div>
-  <% else %>
-    <% Post.valid.each do |post| %>
-      <div class="card border-info post mt-3" duration="<%= post.duration %>">
-        <div class="card-header text-center">
-          <%= post.title %>
-        </div>
-        <div class="card-body">
-          <p class="card-text"><%= post.content.html_safe %></p>
-          <% if post.attachment.exists? %>
-            <%= image_tag(post.attachment.url(:small)) %>
-          <% end %>
-        </div>
-        <div class="card-footer text-muted">
-          <% unless post.date.nil? %>
-            <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
-          <% end %>
-        </div>
+      <div class="card-body">
+        <p class="card-text"><%= post.content.html_safe %></p>
+        <% if post.attachment.exists? %>
+          <%= image_tag(post.attachment.url(:small)) %>
+        <% end %>
       </div>
-    <% end %>
+      <div class="card-footer text-muted">
+        <% unless post.date.nil? %>
+          <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
+<% end %>
 </div>
+
 
 <% unless Post.valid.with_emergencies.exists? %>
   <div id="footer" class="fixed-bottom row text-center">
