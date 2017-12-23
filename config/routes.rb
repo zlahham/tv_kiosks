@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     get "/#{d}", to: "kiosk\##{d}"
   end
 
-  # match '*path', to: 'kiosk:show', via: :get
+  mount ActionCable.server, at: '/cable'
 end
