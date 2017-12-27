@@ -6,14 +6,15 @@ RSpec.describe News, type: :model do
 
   describe '.news_list' do
     it 'returns an Array of news items for Engineering' do
-      allow(News).to receive(:news_list) { eng_fake }
+      allow(News).to receive(:news_list).with('engineering_feed') { eng_fake }
       result = News.news_list('engineering_feed')
 
       expect(result).to eq(eng_fake)
     end
 
-    xit 'returns an Array of news items for BBC news' do
-      allow(News).to receive(:news_list) { bbc_fake }
+    it 'returns an Array of news items for BBC news' do
+      allow(News).to receive(:news_list).with('bbc_feed') { eng_fake }
+
       result = News.news_list('bbc_feed')
 
       expect(result).to eq(bbc_fake)
