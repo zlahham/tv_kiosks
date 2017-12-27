@@ -35,7 +35,7 @@ class News
       title   = strip_tags(article[articles[:title_field_name].to_s])
       content = strip_tags(article[articles[:content_field_name].to_s])
       news_item = "#{title}"
-      news_item += " #{title_delimiter} #{content}" if news_feed == 'bbc_feed'
+      news_item += " #{title_delimiter} #{content}" unless news_feed == 'engineering_feed'
       news_list << news_item
     end
     news_list
