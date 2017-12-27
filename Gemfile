@@ -29,7 +29,7 @@ group :development do
 end
 
 group :development, :test do
-  # gem 'faker'
+  gem 'faker'
   gem 'awesome_print'
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -39,11 +39,11 @@ group :development, :test do
 end
 
 group :test do
-  # gem 'capybara'
-  # gem 'database_cleaner'
-  # gem 'launchy'
-  # gem 'shoulda-matchers', '~> 3.1'
-  # gem 'simplecov', require: false
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'simplecov', require: false
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
