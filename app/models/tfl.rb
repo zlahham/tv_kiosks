@@ -6,6 +6,10 @@ class TFL
   class << self
     @@response = HTTParty.get(URL).parsed_response
 
+	def set_test_data(response)
+	  @@response = response
+	end
+
     def disrupted_lines
       @@response.each_with_object([]) do |line, acc|
         next unless bad_service?(line)
