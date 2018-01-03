@@ -72,21 +72,33 @@
     </div>
   </div>
 <% else %>
-  <% Post.valid.each do |post| %>
-    <div class="card border-info post mt-3" duration="<%= post.duration %>">
+  <% if Post.valid.any? %>
+    <% Post.valid.each do |post| %>
+      <div class="card border-info post mt-3" duration="<%= post.duration %>">
+        <div class="card-header text-center">
+          <%= post.title %>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= post.content.html_safe %></p>
+          <% if post.attachment.exists? %>
+            <%= image_tag(post.attachment.url(:small)) %>
+          <% end %>
+        </div>
+        <div class="card-footer text-muted">
+          <% unless post.date.nil? %>
+            <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="card border-info post mt-3" duration="<%= 10 %>">
       <div class="card-header text-center">
-        <%= post.title %>
+        Welcome to UCL
       </div>
       <div class="card-body">
-        <p class="card-text"><%= post.content.html_safe %></p>
-        <% if post.attachment.exists? %>
-          <%= image_tag(post.attachment.url(:small)) %>
-        <% end %>
-      </div>
-      <div class="card-footer text-muted">
-        <% unless post.date.nil? %>
-          <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
-        <% end %>
+        <p class="card-text"></p>
+        <!--<%= image_tag("ucl_portico.jpg") %>-->
       </div>
     </div>
   <% end %>
