@@ -97,10 +97,32 @@
  }
 
  .post, .emergency {
-   width: 60vw;
+   width: 65vw;
    height: 60vh;
    position: absolute;
    display: none;
+ }
+
+ .post-image {
+   width: 100%;
+   vertical-align: bottom;
+   padding-left: 2%;
+ }
+
+ .post-content {
+   margin: 2%;
+   text-align: justify;
+   height: 100%;
+ }
+
+ .post-table {
+   height: 90%;
+ }
+
+ .vcenter {
+   display: inline-block;
+   vertical-align: middle;
+   float: none;
  }
 
  .top {
