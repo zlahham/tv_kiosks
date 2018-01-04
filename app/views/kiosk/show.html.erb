@@ -17,16 +17,7 @@
 </div>
 
 <div id="category">
-  <% if Post.valid.with_emergencies.exists? %>
-    <div class="tab">
-      <div class="card text-danger border-danger bg-light mb-3" style="max-width: 20rem;">
-        <div class="card-body">
-          <%= fa_icon("exclamation-triangle", text: 'Emergency') %>
-        </div>
-      </div>
-    </div>
-
-  <% else %>
+  <% unless Post.valid.with_emergencies.exists? %>
     <% Post.valid.each do |post| %>
       <div class="tab">
         <% if post.category == "news" %>
@@ -35,7 +26,6 @@
               <%= fa_icon("rss", text: 'News') %>
             </div>
           </div>
-
         <% elsif post.category == "event" %>
           <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
             <div class="card-body">
@@ -55,68 +45,22 @@
 <% end %>
 <% if Post.valid.with_emergencies.exists? %>
   <% post = Post.valid.with_emergencies.last %>
-  <div class="card text-danger border-danger emergency mt-3" duration="100" style="z-index: 10; display: flex;">
-    <div class="card-header text-center">
-      <%= post.title %>
-    </div>
-    <div class="card-body">
-      <p class="card-text text-danger"><%= post.content.html_safe %></p>
-      <% if post.attachment.exists? %>
-        <%= image_tag(post.attachment.url(:small)) %>
-      <% end %>
-    </div>
-    <div class="card-footer text-muted">
-      <% unless post.date.nil? %>
-        <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
-      <% end %>
-    </div>
-  </div>
+  <%= render partial: "emergency_post", locals: {post: post} %>
 <% else %>
   <% if Post.valid.any? %>
     <% Post.valid.each do |post| %>
-      <div class="card border-info post mt-42" duration="<%= post.duration %>">
-        <div class="card-header text-center">
-          <%= post.title %>
-        </div>
-        <div class="row post-content">
-          <div class="col-md-6">
-            <table class="post-table">
-              <tbody>
-              <tr>
-                <td class="align-middle">
-                  <p class="card-text"><%= post.content.html_safe %></p>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-          <% if post.attachment.exists? %>
-            <div class="col-md-6">
-              <table class="post-table">
-                <tbody>
-                <tr>
-                  <td class="align-middle">
-                    <%= image_tag(post.attachment.url, class: "post-image") %>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-
-            </div>
-          <% end %>
-        </div>
-      </div>
+      <% if post.attachment.exists? %>
+        <% if post.content.present? %>
+          <%= render partial: "text_image_post", locals: {post: post} %>
+        <% else %>
+          <%= render partial: "image_post", locals: {post: post} %>
+        <% end %>
+      <% else %>
+        <%= render partial: "text_post", locals: {post: post} %>
+      <% end %>
     <% end %>
   <% else %>
-    <div class="card border-info post mt-3" duration="<%= 10 %>">
-      <div class="card-header text-center">
-        Welcome to UCL
-      </div>
-      <div class="card-body">
-        <p class="card-text"> This is a text about UCL </p>
-        <%= image_tag("ucl_portico.jpg") %>
-      </div>
-    </div>
+    <%= render "default_post" %>
   <% end %>
 <% end %>
 </div>

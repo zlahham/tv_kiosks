@@ -1,0 +1,29 @@
+<div class="card border-info post mt-42" duration="<%= post.duration %>">
+  <div class="card-header text-center">
+    <%= post.title %>
+  </div>
+  <div class="row post-content">
+    <div class="col-md-6">
+      <table class="post-table">
+        <tbody>
+        <tr>
+          <td class="align-middle">
+            <p class="card-text"><%= post.content.html_safe %></p>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <table class="post-table">
+        <tbody>
+        <tr>
+          <td class="align-middle">
+            <%= image_tag(post.attachment.url, class: "post-image") %>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

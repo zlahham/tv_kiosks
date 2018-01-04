@@ -100,6 +100,14 @@
    width: 65vw;
    height: 60vh;
    position: absolute;
+ }
+
+ .emergency {
+   z-index: 10;
+   display: flex;
+ }
+
+ .post {
    display: none;
  }
 
@@ -113,6 +121,12 @@
    margin: 2%;
    text-align: justify;
    height: 100%;
+ }
+
+ .emergency-content {
+   margin: 2%;
+   height: 100%;
+   font-size: 3em;
  }
 
  .post-table {
