@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   MAX_DURATION = 30
 
   belongs_to :user
-  enum category: %i[event news emergency]
+  enum category: %i[Event News Emergency]
 
   has_attached_file :attachment,
                     styles: { small: '100x100>',
@@ -12,7 +12,7 @@ class Post < ApplicationRecord
                               thumb: '100x100>' },
                     default_url: ''
 
-  validates :title, :content, :category, :duration, :expires_on, presence: true
+  validates :title, :category, :duration, :expires_on, presence: true
   validates :duration, inclusion: { in: MIN_DURATION..MAX_DURATION }
   validate :expiry_cannot_be_in_past, on: %i[create update]
 
@@ -25,7 +25,7 @@ class Post < ApplicationRecord
   after_destroy :publish
 
   scope :valid, -> { where('expires_on >= ?', Time.now) }
-  scope :with_emergencies, -> { where(category: 'emergency') }
+  scope :with_emergencies, -> { where(category: 'Emergency') }
 
   rails_admin do
     edit do
@@ -47,11 +47,11 @@ class Post < ApplicationRecord
           }
         }
       end
+      field :attachment, :paperclip
       field :date
       field :category
       field :duration
       field :expires_on
-      field :attachment, :paperclip
     end
 
     list do
