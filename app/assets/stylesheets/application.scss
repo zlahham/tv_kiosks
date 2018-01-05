@@ -16,6 +16,12 @@
    overflow: hidden;
  }
 
+ td {
+   p {
+     font-size: 2vh;
+   }
+ }
+
  #footer {
    border-color: black;
    border-top: 0.1vh solid;
@@ -135,11 +141,7 @@
    width: 100%;
  }
 
- .vcenter {
-   display: inline-block;
-   vertical-align: middle;
-   float: none;
- }
+
 
  .top {
    z-index: 2;
