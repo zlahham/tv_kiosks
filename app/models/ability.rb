@@ -9,7 +9,7 @@ class Ability
       can :manage, :all
     elsif user.staff?
       can :dashboard, :all
-      can :manage, User, id: user.id
+      can :read, User, id: user.id
       can :manage, Post, user_id: user.id
     end
   end
