@@ -57,8 +57,6 @@
 
  #news-feed {
    font-size: 2.5vh;
-   // If you resize the screen, the width does not update
-   // (need to refresh the page)
    width: 100%;
    overflow: hidden;
    white-space: nowrap;
@@ -154,7 +152,6 @@
  }
 
  //Visually removes weird p tags
-//TODO Better solution?
 .notice, .alert {
  margin: 0;
  border: 0;
@@ -170,6 +167,7 @@
  .tab {
    position: fixed;
    top: 30%;
+   min-width: 13vw;
    font-size: 3vh;
    padding: 0.5%;
    padding-left: 2%;
