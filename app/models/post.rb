@@ -12,7 +12,7 @@ class Post < ApplicationRecord
                               thumb: '100x100>' },
                     default_url: ''
 
-  validates :title, :category, :duration, :expires_on, presence: true
+  validates :title, :category, :duration, :date, :expires_on, presence: true
   validates :content, length: { maximum: 500 }
   validates :title, length: { maximum: 60 }
   validates :duration, inclusion: { in: MIN_DURATION..MAX_DURATION }
@@ -26,7 +26,7 @@ class Post < ApplicationRecord
   after_commit :publish
   after_destroy :publish
 
-  scope :valid, -> { where('expires_on >= ?', Time.now) }
+  scope :valid, -> { where('expires_on >= :now AND date <= :now', now: Time.now) }
   scope :with_emergencies, -> { where(category: 'Emergency') }
 
   rails_admin do
