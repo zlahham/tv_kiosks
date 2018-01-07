@@ -73,10 +73,6 @@ class Post < ApplicationRecord
         end
       end
     end
-
-    object_label_method do
-      :post_label_method
-    end
   end
 
   private
@@ -87,9 +83,5 @@ class Post < ApplicationRecord
 
   def expiry_cannot_be_in_past
     errors.add(:expires_on, ' cannot be in the past!') if expires_on < Time.now
-  end
-
-  def post_label_method
-    "Post ##{id}"
   end
 end
