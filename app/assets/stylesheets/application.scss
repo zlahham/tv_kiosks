@@ -16,6 +16,12 @@
    overflow: hidden;
  }
 
+ td {
+   p {
+     font-size: 2vh;
+   }
+ }
+
  #footer {
    border-color: black;
    border-top: 0.1vh solid;
@@ -97,11 +103,45 @@
  }
 
  .post, .emergency {
-   width: 60vw;
+   width: 65vw;
    height: 60vh;
    position: absolute;
+ }
+
+ .emergency {
+   z-index: 10;
+   display: flex;
+ }
+
+ .post {
    display: none;
  }
+
+ .post-image {
+   max-width: 100%;
+   max-height: 48vh;
+   padding-left: 2%;
+ }
+
+ .post-content {
+   margin: 2%;
+   text-align: justify;
+   height: 100%;
+   overflow: hidden;
+ }
+
+ .emergency-content {
+   margin: 2%;
+   height: 100%;
+   font-size: 3em;
+ }
+
+ .post-table {
+   height: 90%;
+   width: 100%;
+ }
+
+
 
  .top {
    z-index: 2;
