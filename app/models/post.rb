@@ -13,6 +13,8 @@ class Post < ApplicationRecord
                     default_url: ''
 
   validates :title, :category, :duration, :expires_on, presence: true
+  validates :content, length: { maximum: 500 }
+  validates :title, length: { maximum: 60 }
   validates :duration, inclusion: { in: MIN_DURATION..MAX_DURATION }
   validate :expiry_cannot_be_in_past, on: %i[create update]
 
