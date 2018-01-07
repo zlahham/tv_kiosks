@@ -7,6 +7,8 @@ class Ability
 
     if user.admin?
       can :manage, :all
+      cannot :destroy, User
+
     elsif user.staff?
       can :dashboard, :all
       can :manage, User, id: user.id
