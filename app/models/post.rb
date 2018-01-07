@@ -34,6 +34,27 @@ class Post < ApplicationRecord
       group :default do
         label 'Post information'
         help 'Please fill all information related to your post...'
+        field :user do
+          label 'Author'
+        end
+        field :title do
+          label 'Post Title'
+        end
+        field :content do
+          label 'Post Content'
+        end
+        field :attachment do
+          label 'Image'
+        end
+        field :category do
+          label 'Post Category'
+        end
+        field :duration do
+          label 'Duration (Seconds)'
+        end
+        field :date do
+          label 'Scheduled Date & Time'
+        end
       end
 
       field :user
@@ -50,9 +71,9 @@ class Post < ApplicationRecord
         }
       end
       field :attachment, :paperclip
-      field :date
       field :category
       field :duration
+      field :date
       field :expires_on
     end
 
