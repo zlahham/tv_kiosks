@@ -20,13 +20,13 @@
   <% unless Post.valid.with_emergencies.exists? %>
     <% Post.valid.each do |post| %>
       <div class="tab">
-        <% if post.category == "news" %>
+        <% if post.category == "News" %>
           <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
             <div class="card-body">
               <%= fa_icon("rss", text: 'News') %>
             </div>
           </div>
-        <% elsif post.category == "event" %>
+        <% elsif post.category == "Event" %>
           <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
             <div class="card-body">
               <%= fa_icon("calendar", text: 'Event') %>

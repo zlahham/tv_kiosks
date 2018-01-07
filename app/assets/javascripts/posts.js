@@ -12,6 +12,9 @@ function switchPosts() {
         $($(posts).get(mainIndex)).css("z-index", 1);
         $($(posts).get(prevMainIndex)).css("z-index", 0);
 
+        $($(tabs).get(mainIndex)).css("z-index", 1);
+        $($(tabs).get(prevMainIndex)).css("z-index", 0);
+
         $($(posts).get(mainIndex)).fadeIn(transitionTime).css("display", "flex");
         $($(tabs).get(mainIndex)).fadeIn(transitionTime).css("display", "flex");
 
@@ -30,6 +33,9 @@ function switchPosts() {
     } else {
         $($(posts).get(mainIndex)).css("z-index", 1);
         $($(posts).get(mainIndex)).css("display", "flex");
+
+        $($(tabs).get(mainIndex)).css("z-index", 1);
+        $($(tabs).get(mainIndex)).css("display", "flex");
     }
 
     // Function call with delay equal to current post's duration attribute
