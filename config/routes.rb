@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root to: 'kiosk#show'
 
-  if defined?(Department) && Department.any?
+  if Department.any? || defined?(Department) == 'constant'
     Department.all.pluck(:code).each do |d|
       get "/#{d}", to: "kiosk\##{d}"
     end
