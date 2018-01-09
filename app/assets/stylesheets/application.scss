@@ -8,7 +8,7 @@
 
  $footer-height: 8%;
 
- $divider-thickness: 0.1%;
+ $divider-thickness: 1px;
 
  body,
  html {
@@ -92,7 +92,7 @@
 
  .vertical-divider {
    min-height: 100%;
-   border-right: 0.1vh solid black;
+   border-right: $divider-thickness solid black;
    left: 33.3333%;
  }
 
