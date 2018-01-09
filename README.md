@@ -9,7 +9,7 @@ A) Development Setup Manual
 
 For this tutorial, we will assume that you are using a machine running CentOS 7 on it. This means that there will be minor differences if you want to continue on another \*nix based operating system.
 
-This project depends on the following dependancies, technologies and tools:
+This project depends on the following dependencies, technologies, and tools:
 
 ### **Ruby 2.4.2**
 
@@ -18,7 +18,7 @@ This project depends on the following dependancies, technologies and tools:
 
  sudo yum install -y git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl
 
-* Follow the [rbenv tutorial](https://github.com/rbenv/rbenv#installation) to setup the needed environment for your operating system
+* Follow the [rbenv tutorial](https://github.com/rbenv/rbenv#installation) to set up the needed environment for your operating system
 * Open a new terminal window to run the following:
 
 ```sh
@@ -27,7 +27,7 @@ $ rbenv install 2.4.2 -v
 
 This will install Ruby version 2.4.2 and the `-v` flag makes the process verbose, i.e. showing you every step of the process.
 
-After the installation is complete, please verify and then make that version as the global version if you want.
+After the installation is complete, please verify it.
 
 ```sh
 $ rbenv versions
@@ -117,7 +117,7 @@ $ gem install bundler
 $ bundle install
 ```
 
-Before you go on to create the development database and migrate the tables, you will need to generate a database.yml file to connect you to the correct database:
+Before you go on to create the development database and migrate the tables, you will need to generate a database.yml file to connect to the correct database:
 
 ```java
 $ cd tv_kiosks
@@ -144,20 +144,20 @@ B) Production Setup Manual
 
 For the production environment, the assumption is that you will also be on a CentOS 7 machine.
 
-You will have to the same steps as in Section A (Development Setup Manual) with a few more additions.
+You will have to repeat the same steps as in Section A (Development Setup Manual) with a few more additions.
 
 1\. Installing Dependencies
 ---------------------------
 
 You will need to install a few more packages for production deployment, such as Redis and a production capable web server for Rails, such as [Passenger](https://www.phusionpassenger.com/).
 
-Passenger is mentioned here specifically because it has been tested for this application and it works quite well when combined with [Nginx](https://www.nginx.com/) as a reverse proxy.
+Passenger is mentioned here specifically because it has been tested for this application and it works well when combined with [Nginx](https://www.nginx.com/) as a reverse proxy.
 
-Please follow this [tutorial](https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/) to replicate the same production environment that we used for our production app. But do ignore the part about setting up RVM as we have already setup a version manager using rbenv.
+Please follow this [tutorial](https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/) to replicate the same production environment that we used for our production app. But ignore the part about setting up RVM as we have already set up a version manager using rbenv.
 
 ### Redis
 
-* Following Step 1 of this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-configure-a-redis-cluster-on-centos-7) to install Redis on CentOS
+* Follo Step 1 of this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-configure-a-redis-cluster-on-centos-7) to install Redis on CentOS
 * If followed properly, this should allow Redis to run as a service for your machine
 * You can check the status of Redis through:
   * `sudo systemctl status redis.service`
@@ -212,7 +212,7 @@ Please be aware that some of the variables might be different for you, so make s
 3\. Production Secret Keys
 --------------------------
 
-In production you may choose any method that you prefer to save your environment variables, but for simplicity, you can just place your API keys and your Rails Secret Key Base inside the `config/secrets.yml` file at the last section that is dedicated to the production environment.
+In production, you may choose any method that you prefer to save your environment variables, but for simplicity, you can just place your API keys and your Rails Secret Key Base inside the `config/secrets.yml` file at the last section that is dedicated to the production environment.
 
 The following snippet provides an example:
 
@@ -229,9 +229,9 @@ production:
 4\. Configuring Redis and ActionCable
 -------------------------------------
 
-Since Redis is being used as an adapter for ActionCable’s realtime WebSocket channel connections, we must configure it to work with our setup.
+Since Redis is being used as an adapter for ActionCable’s real-time WebSocket channel connections, we must configure it to work with our setup.
 
-In our application code, the `config/environments/production.yml` file must be updates to include the following:
+In our application code, the `config/environments/production.yml` file must be updated to include the following:
 
 ```yaml
   config.action_cable.disable_request_forgery_protection = true
@@ -257,9 +257,9 @@ C. Adding Features
 
 This section will aim to give you an overall overview of how the application works from the source code.
 
-**NOTE: **You need to understand Ruby and to be somewhat proficient in Ruby on Rails in order to contribute to this project. 
+**NOTE:** You need to understand Ruby and be familiar with Ruby on Rails in order to contribute to this project. 
 
-We recommend that you complete a tutorial that takes you through the main Rails features. This tutorial is free and can be found [here](https://www.railstutorial.org/book).
+If this is not the case yet, we recommend that you complete a tutorial that takes you through the main Rails features. We recommend the free tutorial found [here](https://www.railstutorial.org/book).
 
 If you want to learn more about ActionCable, the [official guide](http://guides.rubyonrails.org/action_cable_overview.html) is quite good.
 
@@ -294,20 +294,20 @@ We will be documenting some of the custom features in our application below. Her
 └── vendor
 ```
 
-The structure is quite standard to most Rails projects with the following exceptions:
+The structure follows the standard of most Rails projects with a few exceptions:
 
 * app/models/ability.rb
   * This is where we defined all of our authorisation rules for the different levels of access (admin and staff)
 * config/routes.rb
   * We are dynamically generating routes here of each department
 * Inside `app/models/user.rb` and `app/models/post.rb` there are blocks that begin with `rails admin do`, these are responsible for the settings inside the CMS.
-* `app/models/news.rb`, `app/models/post.rb`, and `app/models/tfl.rb` are actually service objects and not models that are connected to a table in the database. Each of which encapsulates the methods and behaviour needed to communicated with those APIs.
-* `app/views/kiosk/show.rb` is where the code is for the actual TV Kiosk that is shown on the screens, this file also calls on different partials that are separated according to their need.
+* `app/models/news.rb`, `app/models/post.rb`, and `app/models/tfl.rb` are actually service objects and not models that are connected to a table in the database. Each of which encapsulates the methods and behaviour needed to communicate with those APIs.
+* `app/views/kiosk/show.rb` is where the code for the actual TV Kiosk that is shown on the screens can be found. This file also calls on different partials that are separated according to their need.
 
 D. Deployment Manual
 ====================
 
-As of writing, there is no Continuous Delivery pipeline set up due to time constraints. There are plans to incorporate an automated deployment management tool, such as [Chef](https://www.chef.io/), so that deploying to production becomes less error prone. 
+As of writing, there is no Continuous Delivery pipeline set up due to time constraints. There are plans to incorporate an automated deployment management tool, such as [Chef](https://www.chef.io/) so that deploying to production becomes less error prone. 
 
 As you will be using git for version control, as soon as you want to deploy a new update and you are logged into the server user account responsible for deployment, please following these steps to deploy new update:
 
@@ -323,6 +323,6 @@ passenger-config restart-app $(pwd)
 sudo service nginx restart
 ```
 
-And that should apply most updates, unless you have a `rake` task to run, then do not forget to run it.
+That should apply most updates unless you have a `rake` task to run, in which case please do not forget to run it.
 
-Also, if this is the first deployment, you will need to run `bundle exec rake db:seed RAILS_ENV=production`​ after you migrate, as that will populate some basic records in your database.
+If this is the first deployment, you will need to run `bundle exec rake db:seed RAILS_ENV=production`​ after you migrate. This will populate some basic records in your database.
