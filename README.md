@@ -16,7 +16,9 @@ This project depends on the following dependencies, technologies, and tools:
 * It is recommended that you use a Ruby version manager such as rbenv to make it safer and more efficient to update your versions
 * Install the following Ruby and rbenv dependencies for CentOS before you continue:
 
- sudo yum install -y git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl
+```sh
+$ sudo yum install -y git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl
+```
 
 * Follow the [rbenv tutorial](https://github.com/rbenv/rbenv#installation) to set up the needed environment for your operating system
 * Open a new terminal window to run the following:
@@ -46,7 +48,7 @@ $ rbenv versions
 ### **Ruby on Rails 5.1.4**
 
 * After installing Ruby, run the following command: `gem install rails -v 5.1.4`
-* Then run: `​``rbenv rehash`
+* Then run: `rbenv rehash`
 * Verify installation through `rails -v` and the output should be: `Rails 5.1.4`
 
 ### **NodeJS**
