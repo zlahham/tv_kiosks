@@ -3,6 +3,10 @@ class KioskController < ApplicationController
   DEPTS = Department.all
   ENG_DEPTS = %w[chemeng civil compsci eleceng mecheng].freeze
 
+  # Through meta-programming, this sets dynamic controller actions for each
+  # department. e.g. Computer Science would now have an action method named
+  # compsci
+
   DEPTS.each do |d|
     define_method(:"#{d.code}") do
       @department = d.code
