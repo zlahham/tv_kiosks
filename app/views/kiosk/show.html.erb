@@ -1,5 +1,5 @@
-<div id="header" class="fixed-top row text-center">
-  <div id="div-time" class="align-self-center col-md-3"> </div>
+<div id="header" class="fixed-top row">
+  <div id="div-time" class="align-self-center text-center col-md-3"> </div>
   <div class="align-self-center text-left col-md-2">
     <div id="div-weather">
       <%= Weather.temperature %>°C <%= Weather.weather_icon %>
@@ -7,7 +7,7 @@
     <div id="div-date"> </div>
   </div>
   <div class="offset-md-4"> </div>
-  <div class="align-self-end col-md-3">
+  <div class="align-self-end text-center col-md-3">
     <% if @department.blank? %>
       <%= image_tag('ucl_logo.png', id: "ucl-logo", class: "no_department") %>
     <% else %>
