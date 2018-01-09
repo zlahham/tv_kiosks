@@ -3,11 +3,7 @@
 
  //Variable definitions
  $white: #fff;
- $background-color: #0ff;
- $divider-color: #888;
-
  $footer-height: 8%;
-
  $divider-thickness: 1px;
 
  body,
@@ -68,15 +64,7 @@
  }
 
  .card-header {
-  font-size: 3vh;
- }
-
- .card-title {
-   font-size: 2.5vh;
- }
-
- .card-text {
-  font-size: 2vh;
+   font-size: 3vh;
  }
 
  .carousel-indicators {
@@ -136,30 +124,15 @@
    width: 100%;
  }
 
- .top {
-   z-index: 2;
- }
-
- .bottom {
-   z-index: 1;
- }
-
- .footer-widget {
-   text-align: center;
- }
-
- //Visually removes weird p tags
-.notice, .alert {
- margin: 0;
- border: 0;
- padding: 0;
-}
-
 .severe-delay {
   color: red;
 }
 
-.spacer { margin:0; padding:0; height:50px; }
+.spacer {
+  margin:0;
+  padding:0;
+  height:50px;
+}
 
  .tab {
    position: fixed;
