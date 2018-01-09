@@ -20,6 +20,7 @@ class Post < ApplicationRecord
 
   validates_attachment :attachment, content_type: { content_type: ['image/jpeg', 'image/gif', 'image/png'] }
   validates_attachment :attachment, file_name: { matches: [/png\z/, /jpe?g\z/] }
+  validates_with AttachmentSizeValidator, attributes: :attachment, less_than: 10.megabytes
 
   before_validation { attachment.clear if delete_attachment == '1' }
 
