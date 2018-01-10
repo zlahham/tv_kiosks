@@ -1,10 +1,9 @@
-Gemfile.lock
+/* Gemfile.lock */
 
 /node_modules
 /yarn-error.log
 
 .byebug_history
-Gemfile.lock
 config/database.yml
 
 # bundler state

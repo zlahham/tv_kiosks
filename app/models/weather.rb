@@ -25,14 +25,13 @@ class Weather
 
     def find_icon(icon_code)
       case icon_code
-      when '01d'                      then '☀️'
-      when '01n', '02n'               then '🌙'
-      when '02d'                      then '🌤'
-      when '03d', '03n', '04d', '04n' then '☁️'
-      when '09d', '09n', '10d', '10n' then '🌧'
-      when '11d', '11n'               then '⛈'
-      when '13d', '13n'               then '❄️'
-      when '50d', '50n'               then '🌫'
+      when '01d'                                    then '☀️'
+      when '01n', '02n'                             then '🌙'
+      when '02d'                                    then '🌤'
+      when '03d', '03n', '04d', '04n', '50d', '50n' then '☁️'
+      when '09d', '09n', '10d', '10n'               then '🌧'
+      when '11d', '11n'                             then '⛈'
+      when '13d', '13n'                             then '❄️'
       else
         ''
       end

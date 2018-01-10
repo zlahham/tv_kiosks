@@ -6,8 +6,10 @@ Rails.application.routes.draw do
 
   root to: 'kiosk#show'
 
-  KioskController::DEPTS.pluck(:code).each do |d|
-    get "/#{d}", to: "kiosk\##{d}"
+  if Department.any? || defined?(Department) == 'constant'
+    Department.all.pluck(:code).each do |d|
+      get "/#{d}", to: "kiosk\##{d}"
+    end
   end
 
   mount ActionCable.server, at: '/cable'

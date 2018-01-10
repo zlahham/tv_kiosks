@@ -1,5 +1,5 @@
-<div id="header" class="fixed-top row text-center">
-  <div id="div-time" class="align-self-center col-md-3"> </div>
+<div id="header" class="fixed-top row">
+  <div id="div-time" class="align-self-center text-center col-md-3"> </div>
   <div class="align-self-center text-left col-md-2">
     <div id="div-weather">
       <%= Weather.temperature %>°C <%= Weather.weather_icon %>
@@ -7,36 +7,26 @@
     <div id="div-date"> </div>
   </div>
   <div class="offset-md-4"> </div>
-  <div class="align-self-end col-md-3">
+  <div class="align-self-end text-center col-md-3">
     <% if @department.blank? %>
-      <%= image_tag('ucl_logo', id: "ucl-logo", class: "no_department") %>
+      <%= image_tag('ucl_logo.png', id: "ucl-logo", class: "no_department") %>
     <% else %>
-      <%= image_tag('ucl_logo', id: "ucl-logo", style: "background: #{@colour}") %>
+      <%= image_tag('ucl_logo.png', id: "ucl-logo", style: "background: #{@colour}") %>
     <% end %>
   </div>
 </div>
 
 <div id="category">
-  <% if Post.valid.with_emergencies.exists? %>
-    <div class="tab">
-      <div class="card text-danger border-danger bg-light mb-3" style="max-width: 20rem;">
-        <div class="card-body">
-          <%= fa_icon("exclamation-triangle", text: 'Emergency') %>
-        </div>
-      </div>
-    </div>
-
-  <% else %>
+  <% unless Post.valid.with_emergencies.exists? %>
     <% Post.valid.each do |post| %>
       <div class="tab">
-        <% if post.category == "news" %>
+        <% if post.category == "News" %>
           <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
             <div class="card-body">
               <%= fa_icon("rss", text: 'News') %>
             </div>
           </div>
-
-        <% elsif post.category == "event" %>
+        <% elsif post.category == "Event" %>
           <div class="card text-black bg-light mb-3" style="max-width: 20rem;">
             <div class="card-body">
               <%= fa_icon("calendar", text: 'Event') %>
@@ -55,40 +45,22 @@
 <% end %>
 <% if Post.valid.with_emergencies.exists? %>
   <% post = Post.valid.with_emergencies.last %>
-  <div class="card text-danger border-danger emergency mt-3" duration="100" style="z-index: 10; display: flex;">
-    <div class="card-header text-center">
-      <%= post.title %>
-    </div>
-    <div class="card-body">
-      <p class="card-text text-danger"><%= post.content.html_safe %></p>
-      <% if post.attachment.exists? %>
-        <%= image_tag(post.attachment.url(:small)) %>
-      <% end %>
-    </div>
-    <div class="card-footer text-muted">
-      <% unless post.date.nil? %>
-        <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
-      <% end %>
-    </div>
-  </div>
+  <%= render partial: "emergency_post", locals: {post: post} %>
 <% else %>
-  <% Post.valid.each do |post| %>
-    <div class="card border-info post mt-3" duration="<%= post.duration %>">
-      <div class="card-header text-center">
-        <%= post.title %>
-      </div>
-      <div class="card-body">
-        <p class="card-text"><%= post.content.html_safe %></p>
-        <% if post.attachment.exists? %>
-          <%= image_tag(post.attachment.url(:small)) %>
+  <% if Post.valid.any? %>
+    <% Post.valid.each do |post| %>
+      <% if post.attachment.exists? %>
+        <% if post.content.present? %>
+          <%= render partial: "text_image_post", locals: {post: post} %>
+        <% else %>
+          <%= render partial: "image_post", locals: {post: post} %>
         <% end %>
-      </div>
-      <div class="card-footer text-muted">
-        <% unless post.date.nil? %>
-          <%= post.date.strftime("%b %e %Y, %l:%M %p") %>
-        <% end %>
-      </div>
-    </div>
+      <% else %>
+        <%= render partial: "text_post", locals: {post: post} %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= render "default_post" %>
   <% end %>
 <% end %>
 </div>
@@ -101,7 +73,7 @@
       <div class="carousel-inner">
         <% if TFL.no_disruptions? %>
           <div class="carousel-item active">
-            Good service on all lines.
+           TfL: Good service on all lines.
           </div>
         <% else %>
           <% TFL.disrupted_lines.each_with_index do |line, index| %>

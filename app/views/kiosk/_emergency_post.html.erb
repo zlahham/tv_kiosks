@@ -1,0 +1,29 @@
+<div class="card text-danger emergency mt-3" duration="100">
+  <div class="card-header text-center">
+    <%= post.title %>
+  </div>
+  <div class="row emergency-content">
+    <div class="col-md-6">
+      <table class="post-table">
+        <tbody>
+        <tr>
+          <td class="align-middle">
+            <p class="text-danger"><%= post.content.html_safe %></p>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <table class="post-table">
+        <tbody>
+        <tr>
+          <td class="align-middle">
+            <%= image_tag("emergency.png", class: "post-image") %>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

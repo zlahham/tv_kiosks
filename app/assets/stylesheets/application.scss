@@ -3,17 +3,19 @@
 
  //Variable definitions
  $white: #fff;
- $background-color: #0ff;
- $divider-color: #888;
-
  $footer-height: 8%;
-
- $divider-thickness: 0.1%;
+ $divider-thickness: 1px;
 
  body,
  html {
    height: 100%;
    overflow: hidden;
+ }
+
+ td {
+   p {
+     font-size: 2vh;
+   }
  }
 
  #footer {
@@ -51,8 +53,6 @@
 
  #news-feed {
    font-size: 2.5vh;
-   // If you resize the screen, the width does not update
-   // (need to refresh the page)
    width: 100%;
    overflow: hidden;
    white-space: nowrap;
@@ -61,22 +61,10 @@
  #div-center {
    height: auto !important; //Cause footer to stick to bottom in IE 6 */
    min-height: 100%;
-   display:flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
  }
 
  .card-header {
-  font-size: 3vh;
- }
-
- .card-title {
-   font-size: 2.5vh;
- }
-
- .card-text {
-  font-size: 2vh;
+   font-size: 3vh;
  }
 
  .carousel-indicators {
@@ -92,47 +80,64 @@
 
  .vertical-divider {
    min-height: 100%;
-   border-right: 0.1vh solid black;
+   border-right: $divider-thickness solid black;
    left: 33.3333%;
  }
 
  .post, .emergency {
-   width: 60vw;
+   width: 65vw;
    height: 60vh;
-   position: absolute;
+   position: fixed;
+   top: 23vh;
+   left: 17.5vw;
+ }
+
+ .emergency {
+   z-index: 10;
+ }
+
+ .post {
    display: none;
  }
 
- .top {
-   z-index: 2;
+ .post-image {
+   width: 100%;
+   max-height: 48vh;
+   padding-left: 2%;
  }
 
- .bottom {
-   z-index: 1;
+ .post-content {
+   margin: 2%;
+   text-align: justify;
+   height: 100%;
+   overflow: hidden;
  }
 
- .footer-widget {
-   text-align: center;
+ .emergency-content {
+   margin: 2%;
+   height: 100%;
+   font-size: 3em;
  }
 
- //Visually removes weird p tags
-//TODO Better solution?
-.notice, .alert {
- margin: 0;
- border: 0;
- padding: 0;
-}
+ .post-table {
+   height: 90%;
+   width: 100%;
+ }
 
 .severe-delay {
   color: red;
 }
 
-.spacer { margin:0; padding:0; height:50px; }
+.spacer {
+  margin:0;
+  padding:0;
+  height:50px;
+}
 
  .tab {
    position: fixed;
    top: 30%;
-   width: 13vw;
+   min-width: 13vw;
    font-size: 3vh;
    padding: 0.5%;
    padding-left: 2%;

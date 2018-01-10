@@ -1,0 +1,34 @@
+<div class="card post mt-42" duration="<%= post.duration %>">
+  <div class="card-header text-center">
+    <%= post.title %>
+  </div>
+  <div class="row post-content">
+    <div class="col-md-6">
+      <table class="post-table">
+        <tbody>
+        <tr>
+          <td class="align-middle">
+            <p><%= post.content.html_safe %></p>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <table class="post-table">
+        <tbody>
+        <tr>
+          <td class="align-middle">
+            <%= image_tag(post.attachment.url, class: "post-image") %>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% unless post.user.department.name == "General" %>
+    <div class="card-footer">
+      <%= post.user.department.name %>
+    </div>
+  <% end %>
+</div>
