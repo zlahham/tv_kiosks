@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   attr_accessor :delete_attachment
   MIN_DURATION = 5
-  MAX_DURATION = 30
+  MAX_DURATION = 60
 
   belongs_to :user
   enum category: %i[Event News Emergency]
