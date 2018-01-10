@@ -19,11 +19,11 @@ RSpec.describe News, type: :model do
   end
 
   describe '.news_string' do
-    it 'returns a string formatted from an Array of news items' do
-      allow(News).to receive(:news_list).with('feed') { ["item1", "item2", "item3"] }
-	  result = News.news_string('feed')
-	  i_d = "\u2001" * 2 + '+' * 3 + "\u2001" * 2
-	  expect(result).to eq("item1#{i_d}item2#{i_d}item3#{i_d}")
-	end
+    it 'returns a string of news items for a given news feed' do
+      allow(News).to receive(:news_list).with('feed') { %w[item1 item2 item3] }
+      result = News.news_string('feed')
+      i_d = "\u2001" * 2 + '+' * 3 + "\u2001" * 2
+      expect(result).to eq("item1#{i_d}item2#{i_d}item3#{i_d}")
+    end
   end
 end

@@ -9,11 +9,6 @@ class Weather
     @@weather_data = HTTParty.get(URL).parsed_response
     @@temperature = @@weather_data['main']['temp']
 
-	def set_test_data(weather_data)
-	  @@weather_data = weather_data
-      @@temperature = @@weather_data['main']['temp']
-	end
-
     def temperature
       @@temperature.to_i
     end
