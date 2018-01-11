@@ -7,10 +7,24 @@ The TV Kiosk is a single-page website consisting of several custom-made widgets,
 
 ## Table of Contents
 
-* [Development Setup Manual]()
-* [Production Setup Manual]()
-* [Deployment Manual]()
-* [Adding Features]()
+* [A. Development Setup Manual](#a-development-setup-manual)
+  * [A.1 Installing Dependencies](#a1-installing-dependencies)
+    * [A.1.1 **Ruby 2.4.2**](#a11-ruby-242)
+    * [A.1.2 **Ruby on Rails 5.1.4**](#a12-ruby-on-rails-514)
+    * [A.1.3 **NodeJS**](#a13-nodejs)
+    * [A.1.4 **PostgreSQL**](#a14-postgresql)
+    * [A.1.5 imagemagick](#a15-imagemagick)
+  * [B.2 Generating API Keys](#b2-generating-api-keys)
+  * [B.3 Running the Rails Application](#b3-running-the-rails-application)
+* [B. Production Setup Manual](#b-production-setup-manual)
+  * [B.1 Installing Dependencies](#b1-installing-dependencies)
+  * [Redis](#redis)
+  * [B.2 Configuring Nginx](#b2-configuring-nginx)
+  * [B.3 Production Secret Keys](#b3-production-secret-keys)
+  * [B.4 Configuring Redis and ActionCable](#b4-configuring-redis-and-actioncable)
+  * [B.5 Logging](#b5-logging)
+* [C. Adding Features](#c-adding-features)
+* [D. Deployment Manual](#d-deployment-manual)
 
 ## A. Development Setup Manual
 
