@@ -1,17 +1,26 @@
-TV Kiosks
-================
+UCL TV Kiosks
+=============
 
-A) Development Setup Manual
-===========================
+UCL TV Kiosk is a web-based kiosk application intended to unify the digital signage of the UCL Faculty of Engineering Sciences. It was created by Zaid Lahham, Aleksi Anttila, and Paul Venhaus for their client, the Director of Apps Engineering for UCL Faculties Dr. Dean Mohamedally. Prior to the creation of the UCL TV Kiosk, there were several TV Kiosk solutions in place which did not share a coherent design or feature set. Furthermore, they were not well maintained and only used in a few locations. Because of this, Dr. Mohamedally approached the team with the task of developing a single unified kiosk application for all departments that works on a wide range of screens and is easily updated with new content.
 
-1\. Installing Dependencies
----------------------------
+The TV Kiosk is a single-page website consisting of several custom-made widgets, as well as staff-generated posts. It is managed through a powerful content management system (CMS) with multiple access levels that allows for the creation and editing of departments, users, and posts. Guided by user interviews and market research, the UCL TV Kiosk was designed to be easily understandable through a clean and bright interface with custom colors for each department. Due to its easy setup, consisting of the single step of loading a website, it can be displayed on most network-connected screens within the faculty.
+
+## Table of Contents
+
+* [Development Setup Manual]()
+* [Production Setup Manual]()
+* [Deployment Manual]()
+* [Adding Features]()
+
+## A. Development Setup Manual
+
+### A.1 Installing Dependencies
 
 For this tutorial, we will assume that you are using a machine running CentOS 7. This means that there will be minor differences if you are on some different \*nix based operating system.
 
 This project depends on the following technologies and tools:
 
-### **Ruby 2.4.2**
+#### A.1.1 **Ruby 2.4.2**
 
 * It is recommended that you use a Ruby version manager such as rbenv to make it safer and more efficient to update your Ruby installation and associated dependencies.
 * Install the following Ruby and rbenv dependencies for CentOS before you continue:
@@ -36,7 +45,7 @@ $ rbenv versions
 
 *  system
    2.4.2
-   
+
 $ rbenv global 2.4.2
 
 $ rbenv versions
@@ -45,13 +54,13 @@ $ rbenv versions
 *   2.4.2
 ```
 
-### **Ruby on Rails 5.1.4**
+#### A.1.2 **Ruby on Rails 5.1.4**
 
 * After installing Ruby, run the following command: `gem install rails -v 5.1.4`
 * Then run: `rbenv rehash`
 * Verify installation through `rails -v` and the output should be: `Rails 5.1.4`
 
-### **NodeJS**
+#### A.1.3 **NodeJS**
 
 * A few components require a Javascript Runtime, so we need Node.js.
 * For CentOS, add the EPEL yum Repository and then install Node.js.
@@ -61,19 +70,18 @@ $ sudo yum -y install epel-release
 $ sudo yum install nodejs
 ```
 
-### **PostgreSQL**
+#### A.1.4 **PostgreSQL**
 
 * You need to install PostgreSQL as the main Database for this application.
 * For CentOS please follow [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-centos-7).
 * It is also important to create a database in PostgreSQL that has the same name as your user account.
 
-### imagemagick
+#### A.1.5 imagemagick
 
 * This library is needed for image and file uploads on the CMS side.
 * On CentOS: `sudo yum install ImageMagick`
 
-2\. Generating API Keys
------------------------
+### B.2 Generating API Keys
 
 As this application uses a few external APIs, you will need to generate your own keys for development and production.
 
@@ -105,8 +113,7 @@ export NEWS_API_KEY=YOURKEY
 
 After you save the file, open a new terminal window or run `source ~/.bashrc` to refresh the environment variables.
 
-3\. Running the Rails Application
----------------------------------
+### B.3 Running the Rails Application
 
 After installing all the packages and libraries in the previous sections, you will now be able to run the application server and use the TV Kiosk system.
 
@@ -141,15 +148,13 @@ Then visit localhost:3000 on your browser, preferably Chrome, and you should see
 
 ![Screen Shot 2018-01-09 at 6.11.15 pm.png](public/readme.png)
 
-B) Production Setup Manual
-==========================
+## B. Production Setup Manual
 
 For the production environment, the assumption is that you will also be on a CentOS 7 machine.
 
 You will have to repeat the same steps as in Section A (Development Setup Manual) with a few more additions.
 
-1\. Installing Dependencies
----------------------------
+### B.1 Installing Dependencies
 
 You will need to install a few more packages for production deployment: Redis, and a production-capable web server for Rails, such as [Passenger](https://www.phusionpassenger.com/).
 
@@ -167,8 +172,7 @@ Please follow this [tutorial](https://www.phusionpassenger.com/library/walkthrou
 * You can also restart the Redis server:
   * `sudo systemctl restart redis.service`
 
-2\. Configuring Nginx
----------------------
+### B.2 Configuring Nginx
 
 There are a few files that you have to update once you are done with the Passenger and Nginx tutorials that were linked in Section B.1.
 
@@ -211,8 +215,7 @@ You are free to add any extra options to the configuration as long as it doesnâ€
 
 Please be aware that some of the variables might be different for you, so make sure that you are using the appropriate paths for your machine.
 
-3\. Production Secret Keys
---------------------------
+### B.3 Production Secret Keys
 
 In production, you may choose any method that you prefer to save your environment variables, but for simplicity, you can just place your API keys and your Rails Secret Key Base inside the `config/secrets.yml` file in the last section that is dedicated to the production environment.
 
@@ -228,8 +231,7 @@ production:
 
 ```
 
-4\. Configuring Redis and ActionCable
--------------------------------------
+### B.4 Configuring Redis and ActionCable
 
 Since Redis is being used as an adapter for ActionCableâ€™s real-time WebSocket channel connections, we must configure it to work with our setup.
 
@@ -244,8 +246,7 @@ As of writing, there are no extra steps needed for our application to connect to
 
 There is a need to tell Nginx that we are using WebSockets, and this is specified in `/etc/nginx/conf.d/tv_kiosks.conf`.
 
-5\. Logging
------------
+### B.5 Logging
 
 There are two main logs that we can use in order to track and debug any issues we have with our application. One is the Rails App Production log and the other is the Nginx log.
 
@@ -254,8 +255,7 @@ The logs can be tailed using the following commands:
 * `$ sudo tail code/log/production.log -f`
 * `sudo tail /var/log/nginx/error.log -f`
 
-C. Adding Features
-==================
+## C. Adding Features
 
 This section will aim to give you an overview of how the application works from the source code.
 
@@ -306,8 +306,7 @@ The structure follows the standard of most Rails projects with a few exceptions:
 * `app/models/news.rb`, `app/models/post.rb`, and `app/models/tfl.rb` are actually service objects and not models that are connected to a table in the database. Each of these encapsulates the methods and behaviour needed to communicate with their associated APIs.
 * `app/views/kiosk/show.rb` is where the code for the actual TV Kiosk that is shown on the screens can be found. This file also calls on different partials that are separated according to their purpose.
 
-D. Deployment Manual
-====================
+## D. Deployment Manual
 
 As of writing, there is no Continuous Delivery pipeline set up due to time constraints. There are plans to incorporate an automated deployment management tool, such as [Chef](https://www.chef.io/) so that deploying to production becomes less error-prone.
 
