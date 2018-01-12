@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180107185148) do
+ActiveRecord::Schema.define(version: 20180112171805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,18 @@ ActiveRecord::Schema.define(version: 20180107185148) do
     t.string "name"
     t.string "colour"
     t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "letsencrypt_plugin_challenges", id: :serial, force: :cascade do |t|
+    t.text "response"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "letsencrypt_plugin_settings", id: :serial, force: :cascade do |t|
+    t.text "private_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

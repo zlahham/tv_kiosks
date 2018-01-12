@@ -1,5 +1,11 @@
 /* Gemfile.lock */
 
+
+/* Lets Encrypt Files */
+/certificates
+/challenge
+/key
+
 /node_modules
 /yarn-error.log
 
