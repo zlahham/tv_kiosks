@@ -41,7 +41,7 @@
 <% if @department.blank? %>
   <div id="div-center" class="no_department">
 <% else %>
-  <div id="div-center" style="background: <%= @colour %>">
+  <div id="div-center" style="background: <%= @colour %>" class="<%= 'next-to-twitter' if @twitter_handle %>">
 <% end %>
 <% if Post.valid.with_emergencies.exists? %>
   <% post = Post.valid.with_emergencies.last %>
@@ -62,6 +62,13 @@
   <% else %>
     <%= render "default_post" %>
   <% end %>
+
+  <% if @twitter_handle %>
+
+    <%= render "twitter_feed" %>
+
+  <% end %>
+
 <% end %>
 </div>
 
