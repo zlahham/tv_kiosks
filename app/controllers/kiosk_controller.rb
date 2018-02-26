@@ -11,6 +11,7 @@ class KioskController < ApplicationController
     define_method(:"#{d.code}") do
       @department = d.code
       @colour = d.colour
+      @twitter_handle = d.twitter_handle
       @news_feed = 'engineering_feed' if ENG_DEPTS.include?(d.code)
       render action: :show
     end

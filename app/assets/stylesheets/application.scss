@@ -205,3 +205,19 @@
 .Waterloo {
   color: #95CDBA;
 }
+
+//----- Twitter Feed -----//
+
+.post.next-to-twitter {
+  left: 5vw;
+}
+
+.embedded-twitter {
+  iframe {
+    width: 20% !important;
+    float: right;
+    margin-top: 20vh !important;
+    height: 68vh !important;
+    margin-right: 3vw;
+  }
+}

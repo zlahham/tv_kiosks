@@ -62,6 +62,13 @@
   <% else %>
     <%= render "default_post" %>
   <% end %>
+
+  <% if @twitter_handle %>
+
+    <%= render "twitter_feed" %>
+
+  <% end %>
+
 <% end %>
 </div>
 
