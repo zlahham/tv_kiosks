@@ -2,13 +2,14 @@ class Screen < ApplicationRecord
 
     belongs_to :department
     validates :department, presence: true
+    validates :name, presence: true, on: :create
 
-    before_create :assign_name
+    after_initialize :assign_name
 
     def assign_name
 
       self.name = loop do
-        random_name = SecureRandom.urlsafe_base64(nil, false)[0..3]
+        random_name = SecureRandom.hex(16)[0..3]
         break random_name unless Screen.exists?(name: random_name)
       end
 
@@ -25,6 +26,7 @@ class Screen < ApplicationRecord
               Department.all.collect {|p| [p.name, p.id]}
             end
           end
+          field :location
         end
     end
 end
