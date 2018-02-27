@@ -2,9 +2,8 @@ class Screen < ApplicationRecord
 
     belongs_to :department
     validates :department, presence: true
-    validates :name, presence: true, on: :create
 
-    before_save :assign_name
+    before_create :assign_name
 
     def assign_name
 
