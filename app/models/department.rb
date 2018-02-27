@@ -1,5 +1,6 @@
 class Department < ApplicationRecord
   has_many :users
+  has_many :screens
 
   validates :colour, :name, :code, presence: true
   validates :code, uniqueness: true
