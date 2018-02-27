@@ -8,11 +8,7 @@ Rails.application.routes.draw do
 
   get "/token/:name", to: "screens#show"
 
-  if Department.any? || defined?(Department) == 'constant'
-    Department.all.pluck(:code).each do |d|
-      get "/#{d}", to: "kiosk\##{d}"
-    end
-  end
+  get "/:code", to: "kiosk#show"
 
   mount ActionCable.server, at: '/cable'
 end
