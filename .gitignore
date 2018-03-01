@@ -4,7 +4,6 @@
 /yarn-error.log
 
 .byebug_history
-config/database.yml
 
 # bundler state
 /.bundle
