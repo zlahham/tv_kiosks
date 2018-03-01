@@ -5,7 +5,7 @@ default: &default
 
 development:
   <<: *default
-  database: alex
+  database: tv_kiosks_development
 
 test:
   <<: *default
