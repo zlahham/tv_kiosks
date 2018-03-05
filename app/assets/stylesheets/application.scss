@@ -36,6 +36,7 @@
  #div-time {
    font-size: 11vh;
    font-weight: 800;
+   max-height: 120px
  }
 
  #div-weather {
@@ -146,7 +147,7 @@
      max-width: 5vh;
    }
  }
- 
+
  //----- UCL departments -----//
  .no_department {
    background: $white url(asset-path('background.png')) no-repeat center center fixed;
@@ -220,4 +221,21 @@
     height: 68vh !important;
     margin-right: 3vw;
   }
+}
+
+//----- Video Posts ----//
+
+.video-post-wrapper {
+  left:0;
+	right:0;
+	top:0;
+	bottom:0;
+  overflow: auto;
+	padding:120px 0 8% 0;
+}
+
+.video-post {
+  margin:0 auto;
+  width: 100% !important;
+  height: 100% !important;
 }
