@@ -12,7 +12,7 @@ RSpec.describe Post, type: :model do
 
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:category) }
-    it { is_expected.to define_enum_for(:category).with(%i[Event News Emergency]) }
+    it { is_expected.to define_enum_for(:category).with(%i[Event News Video Emergency]) }
     it { is_expected.to validate_presence_of(:duration) }
     it { is_expected.to validate_presence_of(:expires_on) }
 
