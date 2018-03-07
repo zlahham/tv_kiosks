@@ -56,7 +56,11 @@
           <%= render partial: "kiosk/image_post", locals: {post: post} %>
         <% end %>
       <% else %>
-        <%= render partial: "text_post", locals: {post: post} %>
+        <% if post.category == "Video" %>
+          <%= render partial: "video_post", locals: {post: post} %>
+        <% else %>
+          <%= render partial: "text_post", locals: {post: post} %>
+        <% end %>
       <% end %>
     <% end %>
   <% else %>
