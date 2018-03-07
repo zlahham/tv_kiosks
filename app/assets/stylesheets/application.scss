@@ -60,7 +60,7 @@
  }
 
  #div-center {
-   height: auto !important; //Cause footer to stick to bottom in IE 6 */
+   height: 100% !important; //Cause footer to stick to bottom in IE 6 */
    min-height: 100%;
  }
 
@@ -225,17 +225,26 @@
 
 //----- Video Posts ----//
 
-.video-post-wrapper {
-  left:0;
-	right:0;
-	top:0;
-	bottom:0;
-  overflow: auto;
-	padding:120px 0 8% 0;
+.video-post {
+  min-width: 100%;
+  min-height: 100%;
+  padding:120px 0 8% 0;
 }
 
 .video-post {
-  margin:0 auto;
-  width: 100% !important;
-  height: 100% !important;
+	position:relative;
+	padding-bottom:59%;
+	padding-top:30px;
+	height:0;
+	overflow:hidden;
 }
+
+.video-post iframe, .video-post object, .video-post embed {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+
