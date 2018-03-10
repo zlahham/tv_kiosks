@@ -15,7 +15,7 @@ class Post < ApplicationRecord
   validates :title, :category, :duration, :date, :expires_on, presence: true
   validates :content, length: { maximum: 500 }
   validates :title, length: { maximum: 60 }
-  validates :video_url, format: { with: ^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$, message: 'must be a valid Youtube video URL'}, allow_blank: true
+  validates :video_url, format: { with: ((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$, message: 'must be a valid Youtube video URL'}, allow_blank: true
   validates :duration, inclusion: { in: MIN_DURATION..MAX_DURATION }
   validate :expiry_cannot_be_in_past, on: %i[create update]
 
