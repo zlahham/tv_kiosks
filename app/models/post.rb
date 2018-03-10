@@ -15,6 +15,7 @@ class Post < ApplicationRecord
   validates :title, :category, :duration, :date, :expires_on, presence: true
   validates :content, length: { maximum: 500 }
   validates :title, length: { maximum: 60 }
+  validates :video_url, format: { with: ^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$, message: 'must be a valid Youtube video URL'}, allow_blank: true
   validates :duration, inclusion: { in: MIN_DURATION..MAX_DURATION }
   validate :expiry_cannot_be_in_past, on: %i[create update]
 
@@ -50,6 +51,9 @@ class Post < ApplicationRecord
         field :category do
           label 'Post Category'
         end
+        field :video_url do
+          label 'Video URL'
+        end
         field :duration do
           label 'Duration (Seconds)'
         end
@@ -73,6 +77,7 @@ class Post < ApplicationRecord
       end
       field :attachment, :paperclip
       field :category
+      field :video_url
       field :duration
       field :date
       field :expires_on
@@ -82,6 +87,7 @@ class Post < ApplicationRecord
       field :title
       field :user
       field :category
+      field :video_url
       field :date
       field :duration
       field :expires_on
