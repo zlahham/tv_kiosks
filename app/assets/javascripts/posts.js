@@ -10,8 +10,7 @@ function toggleVideo(state, div) {
     //var div = document.getElementByClassName("video-post");
     var iframe = div.find("iframe")[0].contentWindow;
     //div.style.display = state == 'hide' ? 'none' : '';
-    func = state == 'hide' ? 'pauseVideo' : 'playVideo';
-    iframe.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
+    func = state == 'hide' ? 'stopVideo' : 'playVideo';
     iframe.postMessage('{"event":"command","func":"' + func + '","args":""}', '*');
 }
 
