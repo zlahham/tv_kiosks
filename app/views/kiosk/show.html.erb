@@ -41,7 +41,7 @@
 <% unless @department %>
   <div id="div-center" class="no_department">
 <% else %>
-  <div id="div-center" style="background: <%= @department.colour %>" class="<%= 'next-to-twitter' if @department.twitter_handle %>">
+  <div id="div-center" style="background: <%= @department.colour %>" class="<%= 'next-to-twitter' if @department.twitter_handle.length > 0 %>">
 <% end %>
 <% if Post.valid.with_emergencies.exists? %>
   <% post = Post.valid.with_emergencies.last %>
