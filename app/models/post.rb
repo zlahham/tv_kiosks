@@ -103,6 +103,12 @@ class Post < ApplicationRecord
     end
   end
 
+  def self.fetch_feeds
+
+    
+
+  end
+
   private
 
   def publish
