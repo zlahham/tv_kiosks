@@ -105,7 +105,13 @@ class Post < ApplicationRecord
 
   def self.fetch_feeds
 
-    
+    User.where.not(field_url: '').each do |user|
+
+
+      puts user.email
+
+
+    end
 
   end
 
