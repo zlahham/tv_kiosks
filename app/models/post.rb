@@ -105,11 +105,24 @@ class Post < ApplicationRecord
 
   def self.fetch_feeds
 
-    User.where.not(field_url: '').each do |user|
+    User.where.not(feed_url: '').each do |user|
 
+      remote_contents = JSON.parse(open(user.feed_url).read)
 
-      puts user.email
+      remote_contents.each do |post|
 
+        # Skip posts that haven't happened since we last checked
+        next if Time.parse(post["timestamp"]) < Time.now - 2.hours
+
+        proposed_post = Post.new(title: post["title"], category: post["category"], duration: post["duration"], content: (post["content"] || nil), video_url: (post["video_url"] || nil), date: Time.parse(post["date"]), expires_on: Time.parse(post["expires_on"]))
+
+        proposed_post.user_id = user.id
+
+        puts proposed_post.inspect
+
+        proposed_post.save!
+
+      end
 
     end
 

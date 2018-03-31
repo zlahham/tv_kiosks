@@ -29,7 +29,7 @@ class User < ApplicationRecord
       field :role
       field :posts
       field :department
-      field :feed_token
+      field :feed_url
     end
   end
 end
