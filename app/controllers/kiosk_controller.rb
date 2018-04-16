@@ -9,6 +9,6 @@ class KioskController < ApplicationController
     @news_feed = 'engineering_feed' if ENG_DEPTS.include?(@department.code)
 
     @ucl_logo = 'ucl_logo.png' if @ucl_logo.blank?
-    
+
   end
 end

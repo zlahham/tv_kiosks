@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :posts
 
   validates :email, :password, :name, :role, presence: true
-  validates :feed_url, url: true, presence: false
+  validates :feed_url, url: true, allow_blank: true
 
   rails_admin do
     edit do
