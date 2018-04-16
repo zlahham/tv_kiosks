@@ -1,10 +1,10 @@
 class Post < ApplicationRecord
   attr_accessor :delete_attachment
   MIN_DURATION = 5
-  MAX_DURATION = 60
+  MAX_DURATION = 600
 
   belongs_to :user
-  enum category: %i[Event News Emergency]
+  enum category: %i[Event News Video Emergency]
 
   has_attached_file :attachment,
                     styles: { small: '100x100>',
@@ -15,6 +15,7 @@ class Post < ApplicationRecord
   validates :title, :category, :duration, :date, :expires_on, presence: true
   validates :content, length: { maximum: 500 }
   validates :title, length: { maximum: 60 }
+  validates :video_url, format: { with: /\A(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/, message: 'must be a valid Youtube video URL'}, allow_blank: true
   validates :duration, inclusion: { in: MIN_DURATION..MAX_DURATION }
   validate :expiry_cannot_be_in_past, on: %i[create update]
 
@@ -50,6 +51,9 @@ class Post < ApplicationRecord
         field :category do
           label 'Post Category'
         end
+        field :video_url do
+          label 'Video URL'
+        end
         field :duration do
           label 'Duration (Seconds)'
         end
@@ -73,6 +77,7 @@ class Post < ApplicationRecord
       end
       field :attachment, :paperclip
       field :category
+      field :video_url
       field :duration
       field :date
       field :expires_on
@@ -82,6 +87,7 @@ class Post < ApplicationRecord
       field :title
       field :user
       field :category
+      field :video_url
       field :date
       field :duration
       field :expires_on
@@ -95,6 +101,31 @@ class Post < ApplicationRecord
         end
       end
     end
+  end
+
+  def self.fetch_feeds
+
+    User.where.not(feed_url: '').each do |user|
+
+      remote_contents = JSON.parse(open(user.feed_url).read)
+
+      remote_contents.each do |post|
+
+        # Skip posts that haven't happened since we last checked
+        next if Time.parse(post["timestamp"]) < Time.now - 2.hours
+
+        proposed_post = Post.new(title: post["title"], category: post["category"], duration: post["duration"], content: (post["content"] || nil), video_url: (post["video_url"] || nil), date: Time.parse(post["date"]), expires_on: Time.parse(post["expires_on"]))
+
+        proposed_post.user_id = user.id
+
+        puts proposed_post.inspect
+
+        proposed_post.save!
+
+      end
+
+    end
+
   end
 
   private

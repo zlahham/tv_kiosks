@@ -1,0 +1,11 @@
+[
+	{
+		"timestamp": "2018-03-31 15:17:24 +0100",
+		"title": "Hey it's a title",
+		"category": 1,
+		"duration": 60,
+		"content": "Hello some content",
+		"date": "2018-03-31 16:17:24 +0100",
+		"expires_on": "2018-03-31 19:17:24 +0100"
+	}
+]

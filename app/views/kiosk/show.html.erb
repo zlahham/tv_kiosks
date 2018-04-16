@@ -8,10 +8,10 @@
   </div>
   <div class="offset-md-4"> </div>
   <div class="align-self-end text-center col-md-3">
-    <% if @department.blank? %>
+    <% unless @department %>
       <%= image_tag('ucl_logo.png', id: "ucl-logo", class: "no_department") %>
     <% else %>
-      <%= image_tag('ucl_logo.png', id: "ucl-logo", style: "background: #{@colour}") %>
+      <%= image_tag('ucl_logo.png', id: "ucl-logo", style: "background: #{@department.colour}") %>
     <% end %>
   </div>
 </div>
@@ -38,30 +38,41 @@
   <% end %>
 </div>
 
-<% if @department.blank? %>
+<% unless @department %>
   <div id="div-center" class="no_department">
 <% else %>
-  <div id="div-center" style="background: <%= @colour %>">
+  <div id="div-center" style="background: <%= @department.colour %>" class="<%= 'next-to-twitter' if @department.twitter_handle.length > 0 %>">
 <% end %>
 <% if Post.valid.with_emergencies.exists? %>
   <% post = Post.valid.with_emergencies.last %>
-  <%= render partial: "emergency_post", locals: {post: post} %>
+  <%= render partial: "kiosk/emergency_post", locals: {post: post} %>
 <% else %>
   <% if Post.valid.any? %>
     <% Post.valid.each do |post| %>
       <% if post.attachment.exists? %>
         <% if post.content.present? %>
-          <%= render partial: "text_image_post", locals: {post: post} %>
+          <%= render partial: "kiosk/text_image_post", locals: {post: post} %>
         <% else %>
-          <%= render partial: "image_post", locals: {post: post} %>
+          <%= render partial: "kiosk/image_post", locals: {post: post} %>
         <% end %>
       <% else %>
-        <%= render partial: "text_post", locals: {post: post} %>
+        <% if post.category == "Video" %>
+          <%= render partial: "video_post", locals: {post: post} %>
+        <% else %>
+          <%= render partial: "text_post", locals: {post: post} %>
+        <% end %>
       <% end %>
     <% end %>
   <% else %>
-    <%= render "default_post" %>
+    <%= render "kiosk/default_post" %>
   <% end %>
+
+  <% if @department.twitter_handle %>
+
+    <%= render "kiosk/twitter_feed" %>
+
+  <% end %>
+
 <% end %>
 </div>
 
