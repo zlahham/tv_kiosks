@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap-wysihtml5-rails', '~> 0.3.3.8'
 gem 'cancancan', '~> 2.0'
 gem 'devise', '~> 4.6'
